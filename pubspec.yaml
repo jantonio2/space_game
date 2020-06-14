@@ -82,3 +82,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/img/
+  fonts:
+    - family: Metal
+      fonts:
+        - asset: fonts/MetalMania-Regular.ttf
