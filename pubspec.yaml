@@ -83,6 +83,9 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/img/
+    - assets/images/
+    - assets/audio/
+    - assets/fonts/
   fonts:
     - family: Metal
       fonts:
