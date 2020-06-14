@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "794273494965",
+    "firebase_url": "https://fluttergame-b73f0.firebaseio.com",
+    "project_id": "fluttergame-b73f0",
+    "storage_bucket": "fluttergame-b73f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794273494965:android:dcf963d886c7ad930acbfc",
+        "android_client_info": {
+          "package_name": "com.example.spacegame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794273494965-22egre8bilvi382nhjueehrg9vnjbges.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spacegame",
+            "certificate_hash": "a5dee17e336bbfc73c41a9e257e48567639932c5"
+          }
+        },
+        {
+          "client_id": "794273494965-vidotqh55gc7b26fckccgj9ehvcc0ijt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkjmxYKBvLT1RCG9wT1QGO739HYqRbxJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794273494965-vidotqh55gc7b26fckccgj9ehvcc0ijt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
