@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spacegame/widgets/game.dart';
+import 'package:spacegame/widgets/game_background.dart';
 import 'package:spacegame/widgets/gradient_back.dart';
 
 class CardLevel extends StatelessWidget{
@@ -56,7 +57,7 @@ class CardLevel extends StatelessWidget{
                   shape: BoxShape.circle,
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/img/extraterrestre1.png')
+                      image: AssetImage('assets/img/extraterrestre1.png'),
                   )
               ),
             ),
@@ -76,10 +77,11 @@ class CardLevel extends StatelessWidget{
              ),
             ),
             InkWell(
-              onTap: (){
+              onTap: ()async{
+                var a = await GameBackground();
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Game(level)),
+                    MaterialPageRoute(builder: (context) => a),
                 );
               },
               child: Container(

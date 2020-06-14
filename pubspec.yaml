@@ -33,6 +33,7 @@ dependencies:
   cloud_firestore:
   firebase_core:
   firebase_analytics:
+  flame: ^0.9.5
 
 dev_dependencies:
   flutter_test:
