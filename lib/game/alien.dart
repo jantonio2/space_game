@@ -9,7 +9,8 @@ class Alien extends SpriteComponent {
   int postion;
   int ypostion;
   bool explode = false;
-  double maxY;
+  //double maxY;
+  double maxX;
 
   Alien(this.dimenstions, this.postion, this.ypostion)
       : super.square(ALIEN_SIZE, 'extraterrestre4.png');
@@ -22,27 +23,28 @@ class Alien extends SpriteComponent {
 
   @override
   bool destroy() {
-    /*if (explode) {
+    if (explode) {
       return true;
     }
-    if (y == null || maxY == null) {
+    if (x == null || maxX == null) {
       return false;
     }
-    bool destroy = y >= maxY + ALIEN_SIZE / 2;
+    bool destroy = x >= maxX + ALIEN_SIZE / 2;
     if (destroy) {
       gameOver = true;
 
       print("Game over");
       return true;
     }
-    return destroy;*/
-    return false;
+    return destroy;
+    //return false;
   }
 
   @override
   void resize(Size size) {
     this.x = 0;
     this.y = ALIEN_SIZE * ypostion/2;
-    this.maxY = size.height;
+    //this.maxY = size.height;
+    this.maxX = size.width;
   }
 }

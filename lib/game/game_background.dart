@@ -11,8 +11,8 @@ import 'game.dart';
 bool gameOver = false;
 const ALIENSPEED = 120.0;
 const HANDSPEED = 60.0;
-const ALIEN_SIZE = 40.0;
-const HAND_SIZE = 20.0;
+const ALIEN_SIZE = 50.0;
+const HAND_SIZE = 40.0;
 
 var points = 0;
 Alien alien;

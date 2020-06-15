@@ -10,26 +10,27 @@ import 'game_background.dart';
 class Hand extends SpriteComponent {
   bool explode = false;
   double maxY;
-  List<Alien> dragonList = <Alien>[];
+  List<Alien> AlienList = <Alien>[];
   List<Hand> bulletList = <Hand>[];
-  Hand(this.dragonList, this.bulletList)
+  Hand(this.AlienList, this.bulletList)
       : super.square(HAND_SIZE, 'mano.png');
 
   @override
   void update(double t) {
-    y -= gameOver ? 0 : t * HANDSPEED;
-
-    if (dragonList.isNotEmpty)
-      dragonList.forEach((dragon) {
-        bool remove = this.toRect().contains(dragon.toRect().bottomCenter) ||
-            this.toRect().contains(dragon.toRect().bottomLeft) ||
-            this.toRect().contains(dragon.toRect().bottomRight);
+    //y -= gameOver ? 0 : t * HANDSPEED;
+    y -= t * HANDSPEED;
+    if (AlienList.isNotEmpty)
+      AlienList.forEach((alien) {
+        bool remove = this.toRect().contains(alien.toRect().bottomCenter) ||
+            this.toRect().contains(alien.toRect().bottomLeft) ||
+            this.toRect().contains(alien.toRect().bottomRight);
+        //||this.toRect().contains(Offset(alien.x,alien.y))
         if (remove) {
-          points += 1;
-          dragon.explode = true;
+          points += 100;
+          alien.explode = true;
           bullet.explode = true;
-          dragonList.remove(dragon);
-          game.add(new Explosion(dragon));
+          AlienList.remove(alien);
+          game.add(new Explosion(alien));
         }
       });
   }

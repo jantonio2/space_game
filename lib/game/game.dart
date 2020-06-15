@@ -14,7 +14,7 @@ import 'game_background.dart';
 class Game extends BaseGame {
   bool checkOnce = true;
 
-  List<Alien> dragonList = <Alien>[];
+  List<Alien> AlienList = <Alien>[];
   List<Hand> bulletList = <Hand>[];
   Size dimenstions;
 
@@ -27,7 +27,7 @@ class Game extends BaseGame {
     String text = points.toString();
     TextPainter p = Flame.util
         .text(text, color: Colors.white, fontSize: 48.0, fontFamily: 'Halo');
-    String over = "Game over";
+    String over = "Tu score final: "+points.toString();
     TextPainter overGame = Flame.util
         .text(over, color: Colors.white, fontSize: 48.0, fontFamily: 'Halo');
     /*gameOver
@@ -35,6 +35,9 @@ class Game extends BaseGame {
         : p.paint(canvas,
         new Offset(size.width - p.width - 10, size.height - p.height - 10));*/
     p.paint(canvas, Offset(size.width - p.width - 10, size.height - p.height - 10));
+    if(points>1000){
+      overGame.paint(canvas, Offset(size.width / 5, size.height / 2));
+    }
   }
 
   double creationTimer = 0.0;
@@ -53,6 +56,7 @@ class Game extends BaseGame {
       }*/
       int l = 5+Random().nextInt(20-5);
       alien = new Alien(dimenstions, 0, l);
+      AlienList.add(alien);
       add(alien);
     }
     super.update(t);
@@ -63,7 +67,7 @@ class Game extends BaseGame {
     touchPositionDy = position.dy;
     bulletStartStop = true;
     bulletList.add(bullet);
-    bullet = new Hand(dragonList, bulletList);
+    bullet = new Hand(AlienList, bulletList);
     add(bullet);
   }
 
