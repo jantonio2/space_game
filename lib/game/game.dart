@@ -16,8 +16,9 @@ class Game extends BaseGame {
   bool checkOnce = true;
 
   List<Alien> AlienList = <Alien>[];
-  List<Hand> bulletList = <Hand>[];
+  List<Hand> handList = <Hand>[];
   Size dimenstions;
+  //GlobalKey key;
 
   Game(this.dimenstions);
 
@@ -31,13 +32,13 @@ class Game extends BaseGame {
         .text(text, color: Colors.white, fontSize: 48.0, fontFamily: 'Halo');
     String over = "Tu score final: "+points.toString();
     TextPainter overGame = Flame.util
-        .text(over, color: Colors.white, fontSize: 48.0, fontFamily: 'Halo');
-    /*gameOver
-        ? overGame.paint(canvas, Offset(size.width / 5, size.height / 2))
+        .text(over, color: Colors.white, fontSize: 20.0, fontFamily: 'Halo');
+    finish
+        ? overGame.paint(canvas, Offset(size.width / 3, size.height / 2))
         : p.paint(canvas,
-        new Offset(size.width - p.width - 10, size.height - p.height - 10));*/
-    p.paint(canvas, Offset(size.width - p.width - 10, size.height - p.height - 10));
-    /*if(points>200){
+        new Offset(size.width - p.width - 10, size.height - p.height - 10));
+    //p.paint(canvas, Offset(size.width - p.width - 10, size.height - p.height - 10));
+    /*if(points>200 || !finish){
       //overGame.paint(canvas, Offset(size.width / 5, size.height / 2));
       ScoreAfterGame();
     }*/
@@ -46,41 +47,45 @@ class Game extends BaseGame {
   double creationTimer = 0.0;
   @override
   void update(double t) {
-    creationTimer += t;
-    if (creationTimer >= 4) {
-      creationTimer = 0.0;
-      /*for (int i = 1; i <= ALIEN_SIZE / 7; i++) {
+    if(!finish){
+      creationTimer += t;
+      if (creationTimer >= 4) {
+        creationTimer = 0.0;
+        /*for (int i = 1; i <= ALIEN_SIZE / 7; i++) {
         for (int j = 0; j < i; ++j) {
           alien = new Alien(dimenstions, i, j);
           dragonList.add(alien);
           add(alien);
         }
       }*/
-      int l = 5+Random().nextInt(20-5);
-      alien = new Alien(dimenstions, 0, l);
-      AlienList.add(alien);
-      add(alien);
+        int l = 5+Random().nextInt(20-5);
+        alien = new Alien(dimenstions, 0, l);
+        AlienList.add(alien);
+        add(alien);
+      }
+      super.update(t);
     }
-    super.update(t);
   }
 
   void tapInput(Offset position) {
-    touchPositionDx = position.dx;
-    touchPositionDy = position.dy;
-    bulletStartStop = true;
-    bulletList.add(bullet);
-    bullet = new Hand(AlienList, bulletList);
-    add(bullet);
+    if(!finish){
+      touchPositionDx = position.dx;
+      touchPositionDy = position.dy;
+      handStartStop = true;
+      handList.add(hand);
+      hand = new Hand(AlienList, handList);
+      add(hand);
+    }
   }
 
   void dragInput(Offset position) {
     touchPositionDx = position.dx;
     touchPositionDy = position.dy;
-    bulletStartStop = true;
+    handStartStop = true;
   }
 
   void onUp() {
-    bulletStartStop = false;
+    handStartStop = false;
   }
 }
 

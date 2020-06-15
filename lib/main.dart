@@ -17,7 +17,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -25,6 +24,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         //home: SpaceMenu()
         home: SignInScreen(),
+        navigatorKey: key,
       ),
       bloc: UserBloc(),
     );

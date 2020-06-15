@@ -10,14 +10,16 @@ class CardLevel extends StatelessWidget{
 
   CardLevel(this.pathImage, this.level);
 
+//GlobalKey<ScaffoldState> _sacaffolkey=GlobalKey();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
+
       height: 150,
       width: 150,
       margin: EdgeInsets.only(
-          top: 20.0,
+        top: 20.0,
       ),
       //color: Colors.indigo,
       decoration: BoxDecoration(
@@ -56,8 +58,8 @@ class CardLevel extends StatelessWidget{
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage('assets/img/extraterrestre4.png'),
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/img/extraterrestre4.png'),
                   )
               ),
             ),
@@ -65,23 +67,23 @@ class CardLevel extends StatelessWidget{
               margin: EdgeInsets.only(
                   right: 20.0
               ),
-             child:  Text(
-               level,
-               style: TextStyle(
-                   fontFamily: "Metal",
-                   fontSize: 35.0,
-                   fontWeight: FontWeight.w900,
-                   color: Colors.white
-               ),
-               //textAlign: TextAlign.center,
-             ),
+              child:  Text(
+                level,
+                style: TextStyle(
+                    fontFamily: "Metal",
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white
+                ),
+                //textAlign: TextAlign.center,
+              ),
             ),
             InkWell(
               onTap: ()async{
                 var a = await GameBackground();
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => a),
+                  context,
+                  MaterialPageRoute(builder: (context) => a),
                 );
               },
               child: Container(

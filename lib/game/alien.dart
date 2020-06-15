@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flame/components/component.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:spacegame/Score/ui/score_after_game.dart';
 
 import 'game_background.dart';
 
@@ -11,14 +14,15 @@ class Alien extends SpriteComponent {
   bool explode = false;
   //double maxY;
   double maxX;
+  //GlobalKey<ScaffoldState> context;
 
   Alien(this.dimenstions, this.postion, this.ypostion)
       : super.square(ALIEN_SIZE, 'extraterrestre4.png');
 
   @override
   void update(double t) {
-    //y += gameOver ? 0 : (t * ALIENSPEED);
-    x += t * ALIENSPEED;
+    x += finish ? 0 : (t * ALIENSPEED);
+    //x += t * ALIENSPEED;
   }
 
   @override
@@ -31,8 +35,11 @@ class Alien extends SpriteComponent {
     }
     bool destroy = x >= maxX + ALIEN_SIZE / 2;
     if (destroy) {
-      gameOver = true;
-
+      finish = true;
+      /*final GlobalKey<NavigatorState> navigatorKey=GlobalKey();
+      Navigator.push(context.currentContext,
+        MaterialPageRoute(builder: (context)=>ScoreAfterGame())
+      );*/
       print("Game over");
       return true;
     }

@@ -7,20 +7,19 @@ import 'hand.dart';
 import 'alien.dart';
 import 'game.dart';
 
-
-bool gameOver = false;
+bool finish = false;
 const ALIENSPEED = 120.0;
-const HANDSPEED = 60.0;
+const HANDSPEED = 100.0;
 const ALIEN_SIZE = 50.0;
 const HAND_SIZE = 40.0;
 
 var points = 0;
 Alien alien;
-Hand bullet;
+Hand hand;
 
 var game;
 
-bool bulletStartStop = false;
+bool handStartStop = false;
 
 double touchPositionDx = 0.0;
 double touchPositionDy = 0.0;
@@ -28,9 +27,9 @@ double touchPositionDy = 0.0;
 GameBackground() async {
   Flame.audio.disableLog();
   Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png', 'extraterrestre1.png', 'extraterrestre2.png']);
-
   var dimensions = await Flame.util.initialDimensions();
   game = new Game(dimensions);
+  //game.key=key;
   runApp(MaterialApp(
       home: Scaffold(
           body: Container(
@@ -52,7 +51,6 @@ GameBackground() async {
   Flame.util.addGestureRecognizer(new TapGestureRecognizer()
     ..onTapDown = (TapDownDetails evt) => game.tapInput(evt.globalPosition));
 
-  // Adds onUP feature to fire bullets
   Flame.util.addGestureRecognizer(new TapGestureRecognizer()
     ..onTapUp = (TapUpDetails evt) => game.onUp(evt.globalPosition));
 }

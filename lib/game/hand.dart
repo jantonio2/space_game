@@ -17,8 +17,8 @@ class Hand extends SpriteComponent {
 
   @override
   void update(double t) {
-    //y -= gameOver ? 0 : t * HANDSPEED;
-    y -= t * HANDSPEED;
+    y -= finish ? 0 : t * HANDSPEED;
+    //y -= t * HANDSPEED;
     if (AlienList.isNotEmpty)
       AlienList.forEach((alien) {
         bool remove = this.toRect().contains(alien.toRect().bottomCenter) ||
@@ -28,7 +28,7 @@ class Hand extends SpriteComponent {
         if (remove) {
           points += 100;
           alien.explode = true;
-          bullet.explode = true;
+          hand.explode = true;
           AlienList.remove(alien);
           game.add(new Explosion(alien));
         }
