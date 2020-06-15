@@ -3,20 +3,20 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 
-import 'bullet.dart';
-import 'dragon.dart';
+import 'hand.dart';
+import 'alien.dart';
 import 'game.dart';
 
 
 bool gameOver = false;
-const DRAGONSPEED = 120.0;
-const BULLETSPEED = 60.0;
-const DRAGON_SIZE = 40.0;
-const BULLET_SIZE = 20.0;
+const ALIENSPEED = 120.0;
+const HANDSPEED = 60.0;
+const ALIEN_SIZE = 40.0;
+const HAND_SIZE = 20.0;
 
 var points = 0;
-Dragon dragon;
-Bullet bullet;
+Alien alien;
+Hand bullet;
 
 var game;
 
@@ -37,7 +37,7 @@ GameBackground() async {
           body: Container(
             decoration: new BoxDecoration(
               image: new DecorationImage(
-                image: new AssetImage("assets/images/background.jpg"),
+                image: new AssetImage("assets/images/Fondo1.jpg"),
                 fit: BoxFit.cover,
               ),
             ),

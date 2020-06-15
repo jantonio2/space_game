@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flame/components/component.dart';
 import 'package:flutter/material.dart';
@@ -5,17 +6,16 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:ordered_set/ordered_set.dart';
 
-import 'bullet.dart';
-import 'dragon.dart';
-import 'extraterrestre.dart';
+import 'hand.dart';
+import 'alien.dart';
 import 'game_background.dart';
 
 
 class Game extends BaseGame {
   bool checkOnce = true;
 
-  List<Dragon> dragonList = <Dragon>[];
-  List<Bullet> bulletList = <Bullet>[];
+  List<Alien> dragonList = <Alien>[];
+  List<Hand> bulletList = <Hand>[];
   Size dimenstions;
 
   Game(this.dimenstions);
@@ -30,10 +30,11 @@ class Game extends BaseGame {
     String over = "Game over";
     TextPainter overGame = Flame.util
         .text(over, color: Colors.white, fontSize: 48.0, fontFamily: 'Halo');
-    gameOver
+    /*gameOver
         ? overGame.paint(canvas, Offset(size.width / 5, size.height / 2))
         : p.paint(canvas,
-        new Offset(size.width - p.width - 10, size.height - p.height - 10));
+        new Offset(size.width - p.width - 10, size.height - p.height - 10));*/
+    p.paint(canvas, Offset(size.width - p.width - 10, size.height - p.height - 10));
   }
 
   double creationTimer = 0.0;
@@ -43,13 +44,16 @@ class Game extends BaseGame {
     if (creationTimer >= 4) {
       creationTimer = 0.0;
 
-      for (int i = 1; i <= DRAGON_SIZE / 7; i++) {
+      /*for (int i = 1; i <= ALIEN_SIZE / 7; i++) {
         for (int j = 0; j < i; ++j) {
-          dragon = new Dragon(dimenstions, i, j);
-          dragonList.add(dragon);
-          add(dragon);
+          alien = new Alien(dimenstions, i, j);
+          dragonList.add(alien);
+          add(alien);
         }
-      }
+      }*/
+      int l = 5+Random().nextInt(20-5);
+      alien = new Alien(dimenstions, 0, l);
+      add(alien);
     }
     super.update(t);
   }
@@ -59,7 +63,7 @@ class Game extends BaseGame {
     touchPositionDy = position.dy;
     bulletStartStop = true;
     bulletList.add(bullet);
-    bullet = new Bullet(dragonList, bulletList);
+    bullet = new Hand(dragonList, bulletList);
     add(bullet);
   }
 

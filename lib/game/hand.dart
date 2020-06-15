@@ -2,22 +2,22 @@ import 'dart:ui';
 
 import 'package:flame/components/component.dart';
 
-import 'dragon.dart';
+import 'alien.dart';
 import 'explosion.dart';
 import 'game_background.dart';
 
 
-class Bullet extends SpriteComponent {
+class Hand extends SpriteComponent {
   bool explode = false;
   double maxY;
-  List<Dragon> dragonList = <Dragon>[];
-  List<Bullet> bulletList = <Bullet>[];
-  Bullet(this.dragonList, this.bulletList)
-      : super.square(BULLET_SIZE, 'gun.png');
+  List<Alien> dragonList = <Alien>[];
+  List<Hand> bulletList = <Hand>[];
+  Hand(this.dragonList, this.bulletList)
+      : super.square(HAND_SIZE, 'mano.png');
 
   @override
   void update(double t) {
-    y -= gameOver ? 0 : t * BULLETSPEED;
+    y -= gameOver ? 0 : t * HANDSPEED;
 
     if (dragonList.isNotEmpty)
       dragonList.forEach((dragon) {
