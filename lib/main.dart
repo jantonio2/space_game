@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:spacegame/User/bloc/bloc_user.dart';
+import 'package:spacegame/User/ui/signin_screen.dart';
 import 'package:spacegame/space_menu.dart';
 
 void main() {
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       child: MaterialApp(
         title: 'Flutter Demo',
-        home: SpaceMenu()
+        //home: SpaceMenu()
+        home: SignInScreen(),
       ),
       bloc: UserBloc(),
     );

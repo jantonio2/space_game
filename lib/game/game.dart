@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:ordered_set/ordered_set.dart';
+import 'package:spacegame/Score/ui/score_after_game.dart';
 
 import 'hand.dart';
 import 'alien.dart';
@@ -35,9 +36,10 @@ class Game extends BaseGame {
         : p.paint(canvas,
         new Offset(size.width - p.width - 10, size.height - p.height - 10));*/
     p.paint(canvas, Offset(size.width - p.width - 10, size.height - p.height - 10));
-    if(points>1000){
-      overGame.paint(canvas, Offset(size.width / 5, size.height / 2));
-    }
+    /*if(points>200){
+      //overGame.paint(canvas, Offset(size.width / 5, size.height / 2));
+      ScoreAfterGame();
+    }*/
   }
 
   double creationTimer = 0.0;
