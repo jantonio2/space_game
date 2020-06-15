@@ -23,6 +23,7 @@ class Game extends BaseGame {
 
   @override
   void render(Canvas canvas) {
+    print('puntos: ${points}');
     super.render(canvas);
 
     String text = points.toString();
@@ -48,7 +49,6 @@ class Game extends BaseGame {
     creationTimer += t;
     if (creationTimer >= 4) {
       creationTimer = 0.0;
-
       /*for (int i = 1; i <= ALIEN_SIZE / 7; i++) {
         for (int j = 0; j < i; ++j) {
           alien = new Alien(dimenstions, i, j);

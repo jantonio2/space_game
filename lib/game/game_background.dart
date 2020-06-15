@@ -30,7 +30,6 @@ GameBackground() async {
   Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png', 'extraterrestre1.png', 'extraterrestre2.png']);
 
   var dimensions = await Flame.util.initialDimensions();
-
   game = new Game(dimensions);
   runApp(MaterialApp(
       home: Scaffold(

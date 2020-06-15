@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:spacegame/widgets/main_game.dart';
 import 'package:spacegame/Score/ui/main_score.dart';
+import 'package:spacegame/User/bloc/bloc_user.dart';
 import 'package:spacegame/User/ui/main_user.dart';
 
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'game/main_game.dart';
 
 class SpaceMenu extends StatelessWidget {
@@ -46,7 +48,12 @@ class SpaceMenu extends StatelessWidget {
               break;
             case 2:
               return CupertinoTabView(
-                builder: (BuildContext context) => UserMain(),
+                builder: (BuildContext context) {
+                  return BlocProvider<UserBloc>(
+                    bloc: UserBloc(),
+                    child: UserMain(),
+                  );
+                },
               );
               break;
 
