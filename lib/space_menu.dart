@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:spacegame/widgets/main_game.dart';
+//import 'package:spacegame/widgets/main_game.dart';
 import 'package:spacegame/Score/ui/main_score.dart';
 import 'package:spacegame/User/ui/main_user.dart';
+
+import 'game/main_game.dart';
 
 class SpaceMenu extends StatelessWidget {
   @override

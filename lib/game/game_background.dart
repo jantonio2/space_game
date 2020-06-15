@@ -1,10 +1,11 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:spacegame/widgets/game.dart';
+
 
 import 'bullet.dart';
 import 'dragon.dart';
+import 'game.dart';
 
 
 bool gameOver = false;
@@ -26,7 +27,7 @@ double touchPositionDy = 0.0;
 
 GameBackground() async {
   Flame.audio.disableLog();
-  Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png']);
+  Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png', 'extraterrestre1.png', 'extraterrestre2.png']);
 
   var dimensions = await Flame.util.initialDimensions();
 

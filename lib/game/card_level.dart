@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spacegame/widgets/game.dart';
-import 'package:spacegame/widgets/game_background.dart';
-import 'package:spacegame/widgets/gradient_back.dart';
+
+
+import 'game_background.dart';
 
 class CardLevel extends StatelessWidget{
 
@@ -56,8 +56,8 @@ class CardLevel extends StatelessWidget{
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/img/extraterrestre1.png'),
+                      fit: BoxFit.fill,
+                      image: AssetImage('assets/img/extraterrestre4.png'),
                   )
               ),
             ),

@@ -12,7 +12,7 @@ class Dragon extends SpriteComponent {
   double maxY;
 
   Dragon(this.dimenstions, this.postion, this.ypostion)
-      : super.square(DRAGON_SIZE, 'dragon.png');
+      : super.square(DRAGON_SIZE, 'extraterrestre4.png');
 
   @override
   void update(double t) {
