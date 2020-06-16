@@ -2,13 +2,25 @@ import 'package:flutter/material.dart';
 
 
 import 'game_background.dart';
-
-class CardLevel extends StatelessWidget{
+class CardLevel extends StatefulWidget{
 
   String pathImage = 'assets/img/extraterrestre1.png';
   String level;
 
   CardLevel(this.pathImage, this.level);
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _CardLevel(pathImage, level);
+  }
+}
+
+class _CardLevel extends State<CardLevel>{
+
+  String pathImage = 'assets/img/extraterrestre1.png';
+  String level;
+
+  _CardLevel(this.pathImage, this.level);
 
 //GlobalKey<ScaffoldState> _sacaffolkey=GlobalKey();
   @override
@@ -79,11 +91,11 @@ class CardLevel extends StatelessWidget{
               ),
             ),
             InkWell(
-              onTap: ()async{
-                var a = await GameBackground();
-                Navigator.push(
+              onTap: (){
+                //var a = await GameBackground();
+                Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => a),
+                  MaterialPageRoute(builder: (context) => GameBackground()),ModalRoute.withName("/")
                 );
               },
               child: Container(

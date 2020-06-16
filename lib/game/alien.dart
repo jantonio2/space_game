@@ -9,6 +9,7 @@ import 'game_background.dart';
 
 class Alien extends SpriteComponent {
   Size dimenstions;
+  BuildContext context;
   int postion;
   int ypostion;
   bool explode = false;
@@ -16,7 +17,7 @@ class Alien extends SpriteComponent {
   double maxX;
   //GlobalKey<ScaffoldState> context;
 
-  Alien(this.dimenstions, this.postion, this.ypostion)
+  Alien(this.dimenstions, this.postion, this.ypostion,this.context)
       : super.square(ALIEN_SIZE, 'extraterrestre4.png');
 
   @override
@@ -36,10 +37,9 @@ class Alien extends SpriteComponent {
     bool destroy = x >= maxX + ALIEN_SIZE / 2;
     if (destroy) {
       finish = true;
-      /*final GlobalKey<NavigatorState> navigatorKey=GlobalKey();
-      Navigator.push(context.currentContext,
+      Navigator.push(context,
         MaterialPageRoute(builder: (context)=>ScoreAfterGame())
-      );*/
+      );
       print("Game over");
       return true;
     }
