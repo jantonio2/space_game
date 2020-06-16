@@ -56,7 +56,7 @@ class Game extends BaseGame {
       print("si imprime");
       creationTimer=0;
     }
-    creationTimer += t;
+    creationTimer += t*2;
     if(!finish){
       if (creationTimer >= 4) {
         creationTimer = 0.0;

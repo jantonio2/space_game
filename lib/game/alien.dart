@@ -38,7 +38,7 @@ class Alien extends SpriteComponent {
     if (destroy) {
       finish = true;
       Navigator.push(context,
-        MaterialPageRoute(builder: (context)=>ScoreAfterGame())
+        MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
       );
       print("Game over");
       return true;
