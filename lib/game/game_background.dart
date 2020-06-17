@@ -80,7 +80,28 @@ class _GameBackground extends State<GameBackground>{
           fit: BoxFit.cover,
         ),
       ),
-      child: cargado?game.widget:Container(),
+      child: Stack(
+          children: <Widget>[
+            cargado?game.widget:Container(),
+            Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(
+                      top: 30.0
+                  ),
+                ),
+                Text(
+                  'HALO',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Metal',
+                      fontSize: 30.0
+                  ),
+                )
+              ],
+            )
+          ],
+      ),
     );
   }
 

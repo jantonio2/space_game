@@ -37,6 +37,7 @@ class Alien extends SpriteComponent {
     bool destroy = x >= maxX + ALIEN_SIZE / 2;
     if (destroy) {
       finish = true;
+      print('Entra');
       Navigator.push(context,
         MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
       );
