@@ -37,7 +37,8 @@ class Alien extends SpriteComponent {
       return false;
     }
     bool destroy = x >= maxX + ALIEN_SIZE / 2;
-    if (destroy) {
+    return false;
+    /*if (destroy) {
       finish = true;
       print('Entra');
       Navigator.push(context,
@@ -49,7 +50,7 @@ class Alien extends SpriteComponent {
       print("Game over");
       return true;
     }
-    return destroy;
+    return destroy;*/
   }
 
   @override

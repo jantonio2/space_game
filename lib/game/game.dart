@@ -118,6 +118,11 @@ class Game extends BaseGame {
           _counter--;
         } else {
           _timer.cancel();
+          finish = true;
+          print('Entra ${finish}');
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
+          );
         }
     });
   }
