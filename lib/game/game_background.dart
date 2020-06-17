@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,8 @@ var points = 0;
 Alien alien;
 Hand hand;
 
+int _counter = 10;
+Timer _timer;
 
 
 
@@ -29,6 +33,8 @@ double touchPositionDx = 0.0;
 double touchPositionDy = 0.0;
 
 class GameBackground extends StatefulWidget{
+
+
 
   @override
   State<StatefulWidget> createState() {
@@ -41,6 +47,7 @@ class GameBackground extends StatefulWidget{
 class _GameBackground extends State<GameBackground>{
 
   bool cargado=false;
+
   cargar() async {
     Flame.audio.disableLog();
     await Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png', 'extraterrestre1.png', 'extraterrestre2.png']);
@@ -67,12 +74,21 @@ class _GameBackground extends State<GameBackground>{
   void initState(){
     cargar();
   }
+
+  @override
+  void dispose() {
+    if(!finish){
+      super.dispose();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //construir();
     //print('dimensiones');
     //print(dimensions);
     // TODO: implement build
+
     return Container(
       decoration: new BoxDecoration(
         image: new DecorationImage(
@@ -91,7 +107,7 @@ class _GameBackground extends State<GameBackground>{
                   ),
                 ),
                 Text(
-                  'HALO',
+                  _counter.toString(),
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Metal',

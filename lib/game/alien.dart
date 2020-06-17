@@ -7,6 +7,8 @@ import 'package:spacegame/Score/ui/score_after_game.dart';
 
 import 'game_background.dart';
 
+GameBackground gameBackground;
+
 class Alien extends SpriteComponent {
   Size dimenstions;
   BuildContext context;
@@ -39,13 +41,15 @@ class Alien extends SpriteComponent {
       finish = true;
       print('Entra');
       Navigator.push(context,
-        MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
+          MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
       );
+      /*Navigator.push(context,
+        MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
+      );*/
       print("Game over");
       return true;
     }
     return destroy;
-    //return false;
   }
 
   @override
