@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:spacegame/User/bloc/bloc_user.dart';
+import 'package:spacegame/User/model/user.dart';
 import 'package:spacegame/game/gradient_back.dart';
 import 'package:spacegame/widgets/button_signin.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -60,7 +61,15 @@ class _SignInScreen extends State<SignInScreen>{
               ButtonSignIn(text: "Login con Gmail",
                   onPressed: (){
                     userBloc.signOut();
-                    userBloc.signIn().then((FirebaseUser user) => print("El usuario es ${user.displayName}"));
+                    userBloc.signIn().then((FirebaseUser user) {
+                      userBloc.updateUserData(User(
+                        uid: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoUrl
+                      ));
+                    });
+
                   },
                 width: 300.0,
                 height: 50.0,
