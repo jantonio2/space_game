@@ -20,7 +20,7 @@ class Game extends BaseGame {
   bool checkOnce = true;
   BuildContext context;
 
-  int _counter=10;
+  int _counter=5;
   Timer _timer;
 
   List<Alien> AlienList = <Alien>[];
