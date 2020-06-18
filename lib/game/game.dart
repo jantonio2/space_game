@@ -27,10 +27,13 @@ class Game extends BaseGame {
   List<Hand> handList = <Hand>[];
   Size dimenstions;
   //GlobalKey key;
+  String level;
 
-  Game(this.dimenstions){
+
+  Game(this.dimenstions,this.level){
     points = 0;
     print("entra al juego");
+    print(level);
     _startTimer();
     /*add(
         TimerComponent(
@@ -121,7 +124,7 @@ class Game extends BaseGame {
           finish = true;
           print('Entra ${finish}');
           Navigator.push(context,
-              MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
+              MaterialPageRoute(builder: (context)=>ScoreAfterGame(points,level))
           );
         }
     });

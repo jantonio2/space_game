@@ -1,23 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:spacegame/Score/model/score.dart';
+import 'package:spacegame/User/bloc/bloc_user.dart';
 import 'package:spacegame/game/main_game.dart';
 import 'package:spacegame/game/game_background.dart';
+import 'package:spacegame/widgets/button_purple.dart';
 
 
 class ScoreAfterGame extends StatelessWidget{
   int puntos;
-
-  ScoreAfterGame(this.puntos);
+  String nivel;
+  ScoreAfterGame(this.puntos,this.nivel);
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     // TODO: implement build
     finish = false;
     return Container(
       color: Colors.green,
       child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(puntos.toString()),
-            InkWell(
+            Text(nivel),
+            Container(
+              width: 150.0,
+              child: ButtonPurple(
+                buttonText: 'CONTINUAR',
+                onPressed: (){
+                  userBloc.updateScore(Score(level: nivel, points: puntos)).whenComplete((){
+                    print("TERMINO");
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => GameMain()),ModalRoute.withName("/")
+                    );
+                  });
+                },
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+}
+/*InkWell(
               onTap: (){
                 //var a = await GameBackground();
                 Navigator.pushAndRemoveUntil(
@@ -57,11 +85,4 @@ class ScoreAfterGame extends StatelessWidget{
                 ),
 
               ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-}
+            )*/

@@ -34,12 +34,14 @@ double touchPositionDy = 0.0;
 
 class GameBackground extends StatefulWidget{
 
+  String level;
 
+  GameBackground(this.level);
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _GameBackground();
+    return _GameBackground(level);
   }
 
 }
@@ -47,12 +49,15 @@ class GameBackground extends StatefulWidget{
 class _GameBackground extends State<GameBackground>{
 
   bool cargado=false;
+  String level;
+  _GameBackground(this.level);
+
 
   cargar() async {
     Flame.audio.disableLog();
     await Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png', 'extraterrestre1.png', 'extraterrestre2.png']);
     dimensions = await Flame.util.initialDimensions();
-    game = new Game(dimensions);
+    game = new Game(dimensions, level);
     //game.key=key;
     HorizontalDragGestureRecognizer horizontalDragGestureRecognizer =
     new HorizontalDragGestureRecognizer();

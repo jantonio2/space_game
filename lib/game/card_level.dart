@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-
 import 'game_background.dart';
+
 class CardLevel extends StatefulWidget{
 
   String pathImage = 'assets/img/extraterrestre1.png';
@@ -95,7 +94,7 @@ class _CardLevel extends State<CardLevel>{
                 //var a = await GameBackground();
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => GameBackground()),ModalRoute.withName("/")
+                  MaterialPageRoute(builder: (context) => GameBackground(level)),ModalRoute.withName("/")
                 );
               },
               child: Container(
