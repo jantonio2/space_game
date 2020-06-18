@@ -27,7 +27,7 @@ dependencies:
   google_sign_in:
   equatable:
   meta:
-  generic_bloc_provider: ^1.0.8
+  generic_bloc_provider:
   firebase_storage:
   cloud_firestore:
   firebase_core:
