@@ -29,7 +29,6 @@ dependencies:
   firebase_storage: ^2.1.0
   cloud_firestore: ^0.9.13
   firebase_core:
-  firebase_analytics:
   flame: ^0.9.5
 
 dev_dependencies:
