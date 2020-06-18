@@ -25,11 +25,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_auth:
   google_sign_in:
-  equatable:
-  meta:
-  generic_bloc_provider:
-  firebase_storage:
-  cloud_firestore:
+  generic_bloc_provider: ^1.0.8
+  firebase_storage: ^2.1.0
+  cloud_firestore: ^0.9.13
   firebase_core:
   firebase_analytics:
   flame: ^0.9.5
