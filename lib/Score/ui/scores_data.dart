@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:spacegame/User/bloc/bloc_user.dart';
@@ -16,31 +17,56 @@ class ScoresData extends StatelessWidget{
       ),
       child: Column(
         children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(
+              top: 10.0,
+              bottom: 10.0
+            ),
+            child: Text(
+              'TABLA DE PUNTUACIONES',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 50.0,
+                fontFamily: 'Metal'
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Text(
-                'Nombre',
-                style: TextStyle(
-                  fontFamily: 'Metal',
-                  fontSize: 35.0,
-                  color: Colors.white
+              Container(
+                width: MediaQuery.of(context).size.width*0.45,
+                child: Text(
+                  'Nombre',
+                  style: TextStyle(
+                      fontFamily: 'Metal',
+                      fontSize: 35.0,
+
+                      color: Colors.white,
+                  ),
                 ),
               ),
-              Text(
-                'Nivel',
-                style: TextStyle(
-                    fontFamily: 'Metal',
-                    fontSize: 35.0,
-                    color: Colors.white
+              Container(
+                width: MediaQuery.of(context).size.width*0.3,
+                child: Text(
+                  'Nivel',
+                  style: TextStyle(
+                      fontFamily: 'Metal',
+                      fontSize: 35.0,
+                      color: Colors.white
+                  ),
                 ),
               ),
-              Text(
-                'Puntos',
-                style: TextStyle(
-                    fontFamily: 'Metal',
-                    fontSize: 35.0,
-                    color: Colors.white
+              Container(
+                width: MediaQuery.of(context).size.width*0.25,
+                child: Text(
+                  'Puntos',
+                  style: TextStyle(
+                      fontFamily: 'Metal',
+                      fontSize: 35.0,
+                      color: Colors.white
+                  ),
                 ),
               )
             ],
@@ -48,21 +74,21 @@ class ScoresData extends StatelessWidget{
           StreamBuilder(
             stream: userbloc.scoresStream,
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
-              /*switch(snapshot.connectionState){
+              switch(snapshot.connectionState){
                 case ConnectionState.waiting:
                   return CircularProgressIndicator();
                 case ConnectionState.done:
                   return CircularProgressIndicator();
                 case ConnectionState.active:
                   return Container(
-                    height: MediaQuery.of(context).size.height*0.7,
+                    height: MediaQuery.of(context).size.height*0.5,
                     child: ListView.builder(
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index){
                         //tring nom = ref(snapshot.data.documents[index].data['userOwner']);
                         //print(nom);
                         return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          //mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             StreamBuilder(
                               stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
@@ -113,8 +139,8 @@ class ScoresData extends StatelessWidget{
                       ),
                     ),
                   );
-              }*/
-              if(snapshot.hasData){
+              }
+              /*if(snapshot.hasData){
                 return Container(
                   height: MediaQuery.of(context).size.height*0.7,
                   child: ListView.builder(
@@ -174,7 +200,7 @@ class ScoresData extends StatelessWidget{
                     ),
                   ),
                 );
-              }
+              }*/
             },
           ),
         ],

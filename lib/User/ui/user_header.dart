@@ -74,13 +74,13 @@ class UserHeader extends StatelessWidget {
         margin: EdgeInsets.only(
             left: 20.0,
             right: 20.0,
-            top: 70.0
+            top: 20.0
         ),
         child: Column(
           children: <Widget>[
             CircularProgressIndicator(),
             Text(
-              'No se puedo cargar la informacion'
+              'No se puede cargar la informacion'
             )
           ],
         ),
@@ -102,7 +102,7 @@ class UserHeader extends StatelessWidget {
         margin: EdgeInsets.only(
             left: 20.0,
             right: 20.0,
-            top: 70.0
+            top: 20.0
         ),
         child: Column(
           children: <Widget>[
@@ -114,10 +114,39 @@ class UserHeader extends StatelessWidget {
             UserInfo(user),
             Container(
               margin: EdgeInsets.only(
-                  top: 15.0
+                  top: 10.0
               ),
             ),
-            ButtonsBar()
+            ButtonsBar(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(
+                  'Nombre',
+                  style: TextStyle(
+                      fontFamily: 'Metal',
+                      fontSize: 35.0,
+                      color: Colors.white
+                  ),
+                ),
+                Text(
+                  'Nivel',
+                  style: TextStyle(
+                      fontFamily: 'Metal',
+                      fontSize: 35.0,
+                      color: Colors.white
+                  ),
+                ),
+                Text(
+                  'Puntos',
+                  style: TextStyle(
+                      fontFamily: 'Metal',
+                      fontSize: 35.0,
+                      color: Colors.white
+                  ),
+                )
+              ],
+            )
           ],
         ),
       );
