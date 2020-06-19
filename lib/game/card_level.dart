@@ -19,7 +19,10 @@ class _CardLevel extends State<CardLevel>{
   String pathImage = 'assets/img/extraterrestre1.png';
   String level;
 
+  int index=0;
+
   _CardLevel(this.pathImage, this.level);
+  List<String> img = ['assets/img/extraterrestre4.png','assets/img/alienverde2.png','assets/img/alienver3.png','assets/img/alienverde2.png'];
 
 //GlobalKey<ScaffoldState> _sacaffolkey=GlobalKey();
   @override
@@ -70,7 +73,7 @@ class _CardLevel extends State<CardLevel>{
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage('assets/img/extraterrestre4.png'),
+                    image: AssetImage(img[index]),
                   )
               ),
             ),
@@ -134,6 +137,23 @@ class _CardLevel extends State<CardLevel>{
         ),
       ),
     );
+  }
+
+  moverImagen() async{
+    await Future.delayed(Duration(milliseconds: 150));
+    setState(() {
+      if(index == img.length-1){
+        index = 0;
+      }else{
+        index++;
+      }
+    });
+    moverImagen();
+  }
+
+  @override
+  void initState() {
+    moverImagen();
   }
 
 }

@@ -131,7 +131,9 @@ class Game extends BaseGame {
   void tapInput(Offset position) {
     if(!finish){
       touchPositionDx = position.dx;
+      print('X: ${position.dx}');
       touchPositionDy = position.dy;
+      print('Y: ${position.dy}');
       handStartStop = true;
       handList.add(hand);
       hand = new Hand(AlienList, handList);
