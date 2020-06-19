@@ -58,7 +58,7 @@ class _GameBackground extends State<GameBackground>{
 
   cargar() async {
     Flame.audio.disableLog();
-    await Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png', 'extraterrestre1.png', 'extraterrestre2.png']);
+    await Flame.images.loadAll(['extraterrestre1.png', 'extraterrestre2.png']);
     dimensions = await Flame.util.initialDimensions();
     game = new Game(dimensions, level);
     //game.key=key;

@@ -123,7 +123,19 @@ class Game extends BaseGame {
             }else{
               alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
             }
-          }else{
+          }
+          if(level == 'Nivel 3'){
+            if(l == 11 || l == 7){
+              alien = new Alien(dimenstions, 0, l,context,speed,'alienpurple.png');
+            }else{
+              if(l==8 || l==6){
+                alien = new Alien(dimenstions, 0, l,context,speed,'alienrojo.png');
+              }else{
+                alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
+              }
+            }
+          }
+          if(level == 'Nivel 1' || level == 'Nivel 4' || level == 'Nivel 5'){
             alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
           }
           AlienList.add(alien);

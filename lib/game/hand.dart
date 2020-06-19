@@ -14,6 +14,7 @@ class Hand extends SpriteComponent {
   List<Hand> bulletList = <Hand>[];
   Hand(this.AlienList, this.bulletList)
       : super.square(HAND_SIZE, 'mano.png');
+  Alien alien;
 
   @override
   void update(double t) {
@@ -26,7 +27,15 @@ class Hand extends SpriteComponent {
             this.toRect().contains(alien.toRect().bottomRight);
         //||this.toRect().contains(Offset(alien.x,alien.y))
         if (remove) {
-          points += 100;
+          if(alien.pathImg == 'extraterrestre4.png'){
+            points += 100;
+          }
+          if(alien.pathImg == 'alienrojo.png'){
+            points +=150;
+          }
+          if(alien.pathImg == 'alienpurple.png'){
+            points +=200;
+          }
           alien.explode = true;
           hand.explode = true;
           AlienList.remove(alien);
