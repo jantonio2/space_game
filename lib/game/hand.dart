@@ -39,6 +39,9 @@ class Hand extends SpriteComponent {
           if(alien.pathImg == 'aliensky.png'){
             points +=250;
           }
+          if(alien.pathImg == 'alieneye.png'){
+            points +=300;
+          }
           alien.explode = true;
           hand.explode = true;
           AlienList.remove(alien);
