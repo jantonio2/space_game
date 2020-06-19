@@ -165,67 +165,6 @@ class ScoresData extends StatelessWidget{
                     ),
                   );
               }
-              /*if(snapshot.hasData){
-                return Container(
-                  height: MediaQuery.of(context).size.height*0.7,
-                  child: ListView.builder(
-                    itemCount: snapshot.data.documents.length,
-                    itemBuilder: (context, index){
-                      //tring nom = ref(snapshot.data.documents[index].data['userOwner']);
-                      //print(nom);
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          StreamBuilder(
-                            stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
-                            builder: (context,AsyncSnapshot<DocumentSnapshot>snapshot2){
-                              if(snapshot.hasData){
-                                print(snapshot2.data);
-                                return Text(
-                                  snapshot2.data.data["name"],
-                                  style: TextStyle(
-                                      color: Colors.white
-                                  ),
-                                );
-                              }
-                              else{
-                                return Text("Cargando");
-                              }
-                            },
-                          ),
-                          /*Text(
-                              'Juan',
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
-                            ),*/
-                          Text(
-                            snapshot.data.documents[index].data['level'].toString(),
-                            style: TextStyle(
-                                color: Colors.white
-                            ),
-                          ),
-                          Text(
-                            snapshot.data.documents[index].data['points'].toString(),
-                            style: TextStyle(
-                                color: Colors.white
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                  ),
-                );
-              }else{
-                return Container(
-                  child: Text(
-                    'No DATA',
-                    style: TextStyle(
-                        color: Colors.white
-                    ),
-                  ),
-                );
-              }*/
             },
           ),
         ],

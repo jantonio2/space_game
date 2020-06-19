@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -99,6 +100,7 @@ class UserHeader extends StatelessWidget {
       print("Logeado");
       print(snapshot.data);
       user = User(name: snapshot.data.displayName, email: snapshot.data.email, photoURL: snapshot.data.photoUrl);
+      String id = snapshot.data.uid;
       return Container(
         margin: EdgeInsets.only(
             left: 20.0,
@@ -120,6 +122,9 @@ class UserHeader extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width*0.4,
+                  margin: EdgeInsets.only(
+                    bottom: 15.0,
+                  ),
                   child: Text(
                     'Nivel',
                     style: TextStyle(
@@ -132,6 +137,9 @@ class UserHeader extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width*0.4,
+                  margin: EdgeInsets.only(
+                    bottom: 15.0,
+                  ),
                   child: Text(
                     'Puntos',
                     style: TextStyle(
@@ -143,7 +151,73 @@ class UserHeader extends StatelessWidget {
                   ),
                 )
               ],
-            )
+            ),
+            StreamBuilder(
+              stream: userBloc.myScoresListSream(id),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+                switch(snapshot.connectionState){
+                  case ConnectionState.waiting:
+                    return CircularProgressIndicator();
+                  case ConnectionState.done:
+                    return CircularProgressIndicator();
+                  case ConnectionState.active:
+                    return Container(
+                      height: MediaQuery.of(context).size.height*0.4,
+                      child: ListView.builder(
+                        itemCount: snapshot.data.documents.length,
+                        itemBuilder: (context, index){
+                          //tring nom = ref(snapshot.data.documents[index].data['userOwner']);
+                          //print(nom);
+                          return Row(
+                            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              /*Text(
+                              'Juan',
+                              style: TextStyle(
+                                  color: Colors.white
+                              ),
+                            ),*/
+                              Container(
+                                width: MediaQuery.of(context).size.width*0.4,
+                                child: Text(
+                                  snapshot.data.documents[index].data['level'].toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontFamily: 'Metal'
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width*0.4,
+                                child:  Text(
+                                  snapshot.data.documents[index].data['points'].toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontFamily: 'Metal'
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )
+                            ],
+                          );
+                        },
+                      ),
+                    );
+                  case ConnectionState.none:
+                    return Container(
+                      child: Text(
+                        'No DATA',
+                        style: TextStyle(
+                            color: Colors.white
+                        ),
+                      ),
+                    );
+                }
+              },
+            ),
           ],
         ),
       );

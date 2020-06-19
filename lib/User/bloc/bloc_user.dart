@@ -30,6 +30,12 @@ class UserBloc implements Bloc{
   Stream<QuerySnapshot> scoresListStrean = Firestore.instance.collection(CloudFirestoreAPI().SCORES).orderBy("points",descending: true).snapshots();
   Stream<QuerySnapshot> get scoresStream => scoresListStrean;
 
+  Stream<QuerySnapshot> myScoresListSream(String uid) =>
+      Firestore.instance.collection(CloudFirestoreAPI().SCORES)
+          .where("userOwner", isEqualTo: Firestore.instance.document("${CloudFirestoreAPI().USERS}/${uid}"))
+          .orderBy("points",descending: true)
+          .snapshots();
+
   Stream<QuerySnapshot> userPoint(v) => Firestore.instance.collection(CloudFirestoreAPI().USERS).where("uid", isEqualTo: Firestore.instance.document("${v}")).snapshots();
 
   signOut() {
