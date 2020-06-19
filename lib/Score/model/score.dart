@@ -6,12 +6,12 @@ class Score{
   String id;
   String level;
   int points;
-  User userOwner;
+  //User userOwner;
 
   Score({
     Key key,
     @required this.level,
     @required this.points,
-    @required this.userOwner
+    //@required this.userOwner
   });
 }

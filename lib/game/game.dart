@@ -112,7 +112,7 @@ class Game extends BaseGame {
   }
 
   void _startTimer() {
-    _counter = 10;
+    _counter = 5;
     if (_timer != null) {
       _timer.cancel();
     }

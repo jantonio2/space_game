@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flame/flame.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -95,14 +96,13 @@ class _GameBackground extends State<GameBackground>{
     // TODO: implement build
 
     return Container(
-      decoration: new BoxDecoration(
-        image: new DecorationImage(
-          image: new AssetImage("assets/images/Fondo1.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
       child: Stack(
           children: <Widget>[
+            FlareActor(
+              'assets/space.flr',
+              animation: "idle",
+              fit: BoxFit.cover,
+            ),
             cargado?game.widget:Container(),
             Column(
               children: <Widget>[

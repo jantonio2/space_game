@@ -18,7 +18,6 @@ class CloudFirestoreAPI {
       'name': user.name,
       'email': user.email,
       'photoURL': user.photoURL,
-      'myScores': user.myScores,
       'lastSignIn': DateTime.now()
     }, merge: true);
   }
