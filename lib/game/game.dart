@@ -20,7 +20,7 @@ class Game extends BaseGame {
   bool checkOnce = true;
   BuildContext context;
 
-  int _counter=5;
+  int _counter=12;
   Timer _timer;
 
   List<Alien> AlienList = <Alien>[];
@@ -53,24 +53,24 @@ class Game extends BaseGame {
       super.render(canvas);
 
       String text = points.toString();
-      String c = _counter.toString();
+      String c;
+      if(_counter<10){
+        c = '0'+_counter.toString();
+      }else{
+        c = _counter.toString();
+      }
+
       TextPainter co = Flame.util
           .text(c, color: Colors.white, fontSize: 30.0, fontFamily: 'Metal');
       TextPainter p = Flame.util
           .text(text, color: Colors.white, fontSize: 30.0, fontFamily: 'Metal');
-      String over = "Tu score final: "+points.toString();
-      TextPainter overGame = Flame.util
-          .text(over, color: Colors.white, fontSize: 20.0, fontFamily: 'Halo');
-      print('dimensiones: ${dimenstions.height}');
 
-      finish
-          ? overGame.paint(canvas, Offset(dimenstions.width / 3, dimenstions.height / 2))
-          : co.paint(canvas, Offset(dimenstions.width - co.width - 10, co.height + 40));
-      //p.paint(canvas, Offset(size.width - p.width - 10, size.height - p.height - 10));
-      /*if(points>200 || !finish){
-      //overGame.paint(canvas, Offset(size.width / 5, size.height / 2));
-      ScoreAfterGame();
-    }*/
+      TextPainter lev = Flame.util
+          .text(level, color: Colors.white, fontSize: 30.0, fontFamily: 'Metal');
+
+      co.paint(canvas, Offset(dimenstions.width - co.width - 10, co.height + 40));
+      p.paint(canvas, Offset(dimenstions.width/2, co.height + 40));
+      lev.paint(canvas, Offset(0, co.height + 40));
     }
   }
 
@@ -112,7 +112,7 @@ class Game extends BaseGame {
   }
 
   void _startTimer() {
-    _counter = 5;
+    _counter = 12;
     if (_timer != null) {
       _timer.cancel();
     }

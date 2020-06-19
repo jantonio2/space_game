@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:spacegame/Score/model/score.dart';
@@ -16,14 +17,55 @@ class ScoreAfterGame extends StatelessWidget{
     UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     // TODO: implement build
     finish = false;
-    return Container(
-      color: Colors.green,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(nivel),
-            Container(
+    return Stack(
+      children: <Widget>[
+        FlareActor(
+          'assets/space.flr',
+          animation: "idle",
+          fit: BoxFit.cover,
+        ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(
+                  bottom: 15.0
+                ),
+                child: Text(
+                  'PUNTUACIÓN: ${points}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Metal',
+                    fontSize: 35.0
+                  ),
+                ),
+              ),
+              Container(
+                width: 150.0,
+                child: ButtonPurple(
+                  buttonText: 'CONTINUAR',
+                  onPressed: (){
+                    userBloc.updateScore(Score(level: nivel, points: puntos)).whenComplete((){
+                      print("TERMINO");
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => GameMain()),ModalRoute.withName("/")
+                      );
+                    });
+                  },
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+}
+
+/*Container(
               width: 150.0,
               child: ButtonPurple(
                 buttonText: 'CONTINUAR',
@@ -37,14 +79,9 @@ class ScoreAfterGame extends StatelessWidget{
                   });
                 },
               ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+            )*/
 
-}
+
 /*InkWell(
               onTap: (){
                 //var a = await GameBackground();

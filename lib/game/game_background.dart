@@ -104,23 +104,6 @@ class _GameBackground extends State<GameBackground>{
               fit: BoxFit.cover,
             ),
             cargado?game.widget:Container(),
-            Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(
-                      top: 30.0
-                  ),
-                ),
-                Text(
-                  _counter.toString(),
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Metal',
-                      fontSize: 30.0
-                  ),
-                )
-              ],
-            )
           ],
       ),
     );
