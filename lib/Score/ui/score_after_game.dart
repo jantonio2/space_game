@@ -42,6 +42,19 @@ class ScoreAfterGame extends StatelessWidget{
                 ),
               ),
               Container(
+                margin: EdgeInsets.only(
+                    bottom: 15.0
+                ),
+                child: Text(
+                  nivel,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Metal',
+                      fontSize: 35.0
+                  ),
+                ),
+              ),
+              Container(
                 width: 150.0,
                 child: ButtonPurple(
                   buttonText: 'CONTINUAR',

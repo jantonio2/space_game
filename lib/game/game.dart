@@ -28,12 +28,40 @@ class Game extends BaseGame {
   Size dimenstions;
   //GlobalKey key;
   String level;
+  double i;
 
 
   Game(this.dimenstions,this.level){
     points = 0;
     print("entra al juego");
     print(level);
+    switch(level){
+      case 'Nivel 1':
+        i=4;
+        _counter=25;
+        //ALIENSPEED = 120.0;
+        break;
+      case 'Nivel 2':
+        i=3;
+        _counter=20;
+        //ALIENSPEED = 150.0;
+        break;
+      case 'Nivel 3':
+        i=2;
+        _counter=15;
+        //ALIENSPEED = 180.0;
+        break;
+      case 'Nivel 4':
+        i=1;
+        _counter=10;
+        //ALIENSPEED = 200.0;
+        break;
+      case 'Nivel 5':
+        i=0.5;
+        _counter=5;
+        //ALIENSPEED = 250.0;
+        break;
+    }
     _startTimer();
     /*add(
         TimerComponent(
@@ -79,7 +107,7 @@ class Game extends BaseGame {
   void update(double t) {
     creationTimer += t*2;
     if(!finish){
-      if (creationTimer >= 4) {
+      if (creationTimer >= i) {
         creationTimer = 0.0;
         int l = 5+Random().nextInt(15-5);
         alien = new Alien(dimenstions, 0, l,context);
@@ -112,7 +140,7 @@ class Game extends BaseGame {
   }
 
   void _startTimer() {
-    _counter = 12;
+    //_counter = 12;
     if (_timer != null) {
       _timer.cancel();
     }
