@@ -4,11 +4,13 @@ import 'package:flame/flame.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:spacegame/space_menu.dart';
 
 
 import 'hand.dart';
 import 'alien.dart';
 import 'game.dart';
+import 'main_game.dart';
 
 bool finish = false;
 const ALIENSPEED = 120.0;
@@ -105,6 +107,10 @@ class _GameBackground extends State<GameBackground>{
             ),
             cargado?game.widget:Container(),
             Container(
+              margin: EdgeInsets.only(
+                top: 20.0,
+                left: 20.0
+              ),
               width: 50.0,
               height: 50.0,
               child: RawMaterialButton(
@@ -114,6 +120,7 @@ class _GameBackground extends State<GameBackground>{
                   //game.time.cancel();
                   showDialog(
                       context: context,
+                      barrierDismissible: false,
                       builder: (context){
                         return AlertDialog(
                           title: Text(
@@ -130,9 +137,8 @@ class _GameBackground extends State<GameBackground>{
                               children: <Widget>[
                                 FlatButton(
                                   onPressed: (){
-                                    game.startTime();
-                                    print('boton');
-                                    print('${game.counte}');
+                                    game.paused = false;
+                                    Navigator.pop(context);
                                   },
                                   child: Text(
                                       'Continuar',
@@ -144,8 +150,10 @@ class _GameBackground extends State<GameBackground>{
                                 ),
                                 FlatButton(
                                   onPressed: (){
-                                    game.paused = false;
-                                    Navigator.pop(context);
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context)=>SpaceMenu())
+                                    );
+                                    //Navigator.pop(context);
                                   },
                                   child: Text(
                                       'Volver',
@@ -165,6 +173,7 @@ class _GameBackground extends State<GameBackground>{
                 child: Icon(
                   Icons.pause_circle_filled,
                   color: Colors.white,
+                  size: 50.0,
                 ),
               ),
             )
