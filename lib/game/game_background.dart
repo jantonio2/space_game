@@ -104,6 +104,62 @@ class _GameBackground extends State<GameBackground>{
               fit: BoxFit.cover,
             ),
             cargado?game.widget:Container(),
+            Container(
+              width: 50.0,
+              height: 50.0,
+              child: RawMaterialButton(
+                onPressed: (){
+                  showDialog(
+                      context: context,
+                      builder: (context){
+                        return AlertDialog(
+                          title: Text(
+                              'PAUSA',
+                            style: TextStyle(
+                              fontFamily: 'Metal',
+                              color: Colors.white
+                            ),
+                          ),
+                          backgroundColor: Colors.black12,
+                          content: Container(
+                            height: 100,
+                            child: Column(
+                              children: <Widget>[
+                                FlatButton(
+                                  onPressed: (){},
+                                  child: Text(
+                                      'Continuar',
+                                    style: TextStyle(
+                                        fontFamily: 'Metal',
+                                        color: Colors.white
+                                    ),
+                                  ),
+                                ),
+                                FlatButton(
+                                  onPressed: (){
+                                    //Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                      'Volver',
+                                    style: TextStyle(
+                                        fontFamily: 'Metal',
+                                        color: Colors.white
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        );
+                      }
+                  );
+                },
+                child: Icon(
+                  Icons.pause_circle_filled,
+                  color: Colors.white,
+                ),
+              ),
+            )
           ],
       ),
     );
