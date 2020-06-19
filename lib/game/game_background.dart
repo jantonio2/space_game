@@ -109,6 +109,9 @@ class _GameBackground extends State<GameBackground>{
               height: 50.0,
               child: RawMaterialButton(
                 onPressed: (){
+                  game.paused = true;
+                  game.startTime();
+                  //game.time.cancel();
                   showDialog(
                       context: context,
                       builder: (context){
@@ -126,7 +129,11 @@ class _GameBackground extends State<GameBackground>{
                             child: Column(
                               children: <Widget>[
                                 FlatButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    game.startTime();
+                                    print('boton');
+                                    print('${game.counte}');
+                                  },
                                   child: Text(
                                       'Continuar',
                                     style: TextStyle(
@@ -137,7 +144,8 @@ class _GameBackground extends State<GameBackground>{
                                 ),
                                 FlatButton(
                                   onPressed: (){
-                                    //Navigator.pop(context);
+                                    game.paused = false;
+                                    Navigator.pop(context);
                                   },
                                   child: Text(
                                       'Volver',

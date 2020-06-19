@@ -15,13 +15,18 @@ import 'alien.dart';
 import 'game_background.dart';
 
 
+
+
 class Game extends BaseGame {
 
+  bool paused = false;
+
   bool checkOnce = true;
+  bool checkTimer = true;
   BuildContext context;
 
-  int _counter=12;
-  Timer _timer;
+  int counte=12;
+  Timer time;
 
   List<Alien> AlienList = <Alien>[];
   List<Hand> handList = <Hand>[];
@@ -32,37 +37,38 @@ class Game extends BaseGame {
   double speed = 120.0;
 
   Game(this.dimenstions,this.level){
+    //paused = false;
     points = 0;
-    print("entra al juego");
-    print(level);
+    //print("entra al juego");
+    //print(level);
     switch(level){
       case 'Nivel 1':
         i=0.5;
-        _counter=30;
+        counte=30;
         speed = 120.0;
         break;
       case 'Nivel 2':
         i=1;
-        _counter=25;
+        counte=25;
         speed = 150.0;
         break;
       case 'Nivel 3':
         i=2;
-        _counter=20;
+        counte=20;
         speed = 180.0;
         break;
       case 'Nivel 4':
         i=3;
-        _counter=15;
+        counte=15;
         speed = 200.0;
         break;
       case 'Nivel 5':
         i=4;
-        _counter=10;
+        counte=10;
         speed = 250.0;
         break;
     }
-    _startTimer();
+    startTime();
     /*add(
         TimerComponent(
             Timer(1, repeat: true, callback: () {
@@ -77,15 +83,15 @@ class Game extends BaseGame {
   void render(Canvas canvas) {
     //fin(finish);
     if(!finish){
-      print('puntos: ${points}');
+      //print('puntos: ${points}');
       super.render(canvas);
 
       String text = points.toString();
       String c;
-      if(_counter<10){
-        c = '0'+_counter.toString();
+      if(counte<10){
+        c = '0'+counte.toString();
       }else{
-        c = _counter.toString();
+        c = counte.toString();
       }
 
       TextPainter co = Flame.util
@@ -105,16 +111,20 @@ class Game extends BaseGame {
   double creationTimer = 0.0;
   @override
   void update(double t) {
-    creationTimer += t*2;
-    if(!finish){
-      if (creationTimer >= i) {
-        creationTimer = 0.0;
-        int l = 5+Random().nextInt(15-5);
-        alien = new Alien(dimenstions, 0, l,context,speed);
-        AlienList.add(alien);
-        add(alien);
+    if(!paused){
+      creationTimer += t*2;
+      if(!finish){
+        if (creationTimer >= i) {
+          creationTimer = 0.0;
+          int l = 5+Random().nextInt(15-5);
+          alien = new Alien(dimenstions, 0, l,context,speed);
+          AlienList.add(alien);
+          add(alien);
+        }
+        super.update(t);
       }
-      super.update(t);
+    }else{
+      startTime();
     }
   }
 
@@ -139,23 +149,29 @@ class Game extends BaseGame {
     handStartStop = false;
   }
 
-  void _startTimer() {
+  void startTime() {
     //_counter = 12;
-    if (_timer != null) {
-      _timer.cancel();
+    if (time != null) {
+      time.cancel();
     }
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-        if (_counter > 0) {
-          _counter--;
-        } else {
-          _timer.cancel();
-          finish = true;
-          print('Entra ${finish}');
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context)=>ScoreAfterGame(points,level))
-          );
-        }
+    time = Timer.periodic(Duration(seconds: 1), (timer) {
+      print('${counte}');
+      if (counte > 0 || checkTimer== false) {
+        counte--;
+        checkTimer = true;
+      } else {
+        time.cancel();
+        finish = true;
+        print('Entra ${finish}');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>ScoreAfterGame(points,level))
+        );
+      }
     });
+  }
+
+  void stopTime(){
+    checkTimer = false;
   }
 
   /*void fin(bool f){
