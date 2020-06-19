@@ -135,7 +135,22 @@ class Game extends BaseGame {
               }
             }
           }
-          if(level == 'Nivel 1' || level == 'Nivel 4' || level == 'Nivel 5'){
+          if(level == 'Nivel 4'){
+            if(l == 5 || l == 10){
+              alien = new Alien(dimenstions, 0, l,context,speed,'aliensky.png');
+            }else{
+              if(l == 9 || l == 14){
+                alien = new Alien(dimenstions, 0, l,context,speed,'alienpurple.png');
+              }else{
+                if(l==11 || l==6){
+                  alien = new Alien(dimenstions, 0, l,context,speed,'alienrojo.png');
+                }else{
+                  alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
+                }
+              }
+            }
+          }
+          if(level == 'Nivel 1' ||  level == 'Nivel 5'){
             alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
           }
           AlienList.add(alien);

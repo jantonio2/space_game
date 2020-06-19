@@ -12,6 +12,8 @@ class GameMain extends StatelessWidget{
     List<String> img = ['assets/img/extraterrestre4.png','assets/img/alienverde2.png','assets/img/alienver3.png','assets/img/alienverde2.png'];
     List<String> img2 = ['assets/img/alienrojo.png','assets/img/alienrojo1.png','assets/img/alienrojo2.png','assets/img/alienrojo1.png'];
     List<String> img3 = ['assets/img/alienpurple.png','assets/img/alienpurple1.png','assets/img/alienpurple2.png','assets/img/alienpurple1.png'];
+    List<String> img4 = ['assets/img/aliensky.png','assets/img/aliensky1.png','assets/img/aliensky2.png','assets/img/aliensky1.png'];
+
 
     return Scaffold(
       body: Container(
@@ -37,7 +39,7 @@ class GameMain extends StatelessWidget{
                     CardLevel(img,"Nivel 1"),
                     CardLevel(img2,"Nivel 2"),
                     CardLevel(img3,"Nivel 3"),
-                    CardLevel(img2,"Nivel 4"),
+                    CardLevel(img4,"Nivel 4"),
                     CardLevel(img,"Nivel 5"),
                   ],
                 ),
