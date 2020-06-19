@@ -8,6 +8,10 @@ class GameMain extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    List<String> img = ['assets/img/extraterrestre4.png','assets/img/alienverde2.png','assets/img/alienver3.png','assets/img/alienverde2.png'];
+    List<String> img2 = ['assets/img/alienrojo.png','assets/img/alienrojo1.png','assets/img/alienrojo2.png','assets/img/alienrojo1.png'];
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -29,11 +33,11 @@ class GameMain extends StatelessWidget{
                   padding: EdgeInsets.all(25.0),
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
-                    CardLevel("","Nivel 1"),
-                    CardLevel("","Nivel 2"),
-                    CardLevel("","Nivel 3"),
-                    CardLevel("","Nivel 4"),
-                    CardLevel("","Nivel 5"),
+                    CardLevel(img,"Nivel 1"),
+                    CardLevel(img2,"Nivel 2"),
+                    CardLevel(img,"Nivel 3"),
+                    CardLevel(img2,"Nivel 4"),
+                    CardLevel(img,"Nivel 5"),
                   ],
                 ),
               ),

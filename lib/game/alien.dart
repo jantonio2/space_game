@@ -17,11 +17,12 @@ class Alien extends SpriteComponent {
   bool explode = false;
   //double maxY;
   double maxX;
+  String pathImg;
   //GlobalKey<ScaffoldState> context;
   double speed;
 
-  Alien(this.dimenstions, this.postion, this.ypostion,this.context,this.speed)
-      : super.square(ALIEN_SIZE, 'extraterrestre4.png');
+  Alien(this.dimenstions, this.postion, this.ypostion,this.context,this.speed,this.pathImg)
+      : super.square(ALIEN_SIZE, pathImg);
 
   @override
   void update(double t) {

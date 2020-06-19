@@ -117,7 +117,15 @@ class Game extends BaseGame {
         if (creationTimer >= i) {
           creationTimer = 0.0;
           int l = 5+Random().nextInt(15-5);
-          alien = new Alien(dimenstions, 0, l,context,speed);
+          if(level == 'Nivel 2'){
+            if(l == 9 || l == 13){
+              alien = new Alien(dimenstions, 0, l,context,speed,'alienrojo.png');
+            }else{
+              alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
+            }
+          }else{
+            alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
+          }
           AlienList.add(alien);
           add(alien);
         }
@@ -129,22 +137,28 @@ class Game extends BaseGame {
   }
 
   void tapInput(Offset position) {
-    if(!finish){
-      touchPositionDx = position.dx;
-      print('X: ${position.dx}');
-      touchPositionDy = position.dy;
-      print('Y: ${position.dy}');
-      handStartStop = true;
-      handList.add(hand);
-      hand = new Hand(AlienList, handList);
-      add(hand);
+    if(position.dy>=500){
+      if(!finish ){
+        touchPositionDx = position.dx;
+        print('X: ${position.dx}');
+        touchPositionDy = position.dy;
+        print('Y: ${position.dy}');
+        handStartStop = true;
+        handList.add(hand);
+        hand = new Hand(AlienList, handList);
+        add(hand);
+      }
+    }else{
+      print('Fuera');
     }
   }
 
   void dragInput(Offset position) {
-    touchPositionDx = position.dx;
-    touchPositionDy = position.dy;
-    handStartStop = true;
+    if(position.dy>=500){
+      touchPositionDx = position.dx;
+      touchPositionDy = position.dy;
+      handStartStop = true;
+    }
   }
 
   void onUp(vdata) {

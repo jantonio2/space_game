@@ -3,26 +3,26 @@ import 'game_background.dart';
 
 class CardLevel extends StatefulWidget{
 
-  String pathImage = 'assets/img/extraterrestre1.png';
+  List<String> img;
   String level;
 
-  CardLevel(this.pathImage, this.level);
+  CardLevel(this.img, this.level);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _CardLevel(pathImage, level);
+    return _CardLevel(img, level);
   }
 }
 
 class _CardLevel extends State<CardLevel>{
 
-  String pathImage = 'assets/img/extraterrestre1.png';
+  List<String> img;
   String level;
 
   int index=0;
 
-  _CardLevel(this.pathImage, this.level);
-  List<String> img = ['assets/img/extraterrestre4.png','assets/img/alienverde2.png','assets/img/alienver3.png','assets/img/alienverde2.png'];
+  _CardLevel(this.img, this.level);
+
 
 //GlobalKey<ScaffoldState> _sacaffolkey=GlobalKey();
   @override
