@@ -37,6 +37,9 @@ class ScoresData extends StatelessWidget{
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width*0.45,
+                margin: EdgeInsets.only(
+                  bottom: 15.0
+                ),
                 child: Text(
                   'Nombre',
                   style: TextStyle(
@@ -49,6 +52,9 @@ class ScoresData extends StatelessWidget{
               ),
               Container(
                 width: MediaQuery.of(context).size.width*0.3,
+                margin: EdgeInsets.only(
+                    bottom: 15.0
+                ),
                 child: Text(
                   'Nivel',
                   style: TextStyle(
@@ -60,6 +66,9 @@ class ScoresData extends StatelessWidget{
               ),
               Container(
                 width: MediaQuery.of(context).size.width*0.25,
+                margin: EdgeInsets.only(
+                    bottom: 15.0
+                ),
                 child: Text(
                   'Puntos',
                   style: TextStyle(
@@ -90,22 +99,27 @@ class ScoresData extends StatelessWidget{
                         return Row(
                           //mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                            StreamBuilder(
-                              stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
-                              builder: (context,AsyncSnapshot<DocumentSnapshot>snapshot2){
-                                if(snapshot.hasData){
-                                  print(snapshot2.data);
-                                  return Text(
-                                    snapshot2.data.data["name"],
-                                    style: TextStyle(
-                                        color: Colors.white
-                                    ),
-                                  );
-                                }
-                                else{
-                                  return Text("Cargando");
-                                }
-                              },
+                            Container(
+                              width: MediaQuery.of(context).size.width*0.45,
+                              child: StreamBuilder(
+                                stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
+                                builder: (context,AsyncSnapshot<DocumentSnapshot>snapshot2){
+                                  if(snapshot.hasData){
+                                    print(snapshot2.data);
+                                    return Text(
+                                      snapshot2.data.data["name"],
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20.0,
+                                          fontFamily: 'Metal'
+                                      ),
+                                    );
+                                  }
+                                  else{
+                                    return Text("Cargando");
+                                  }
+                                },
+                              ),
                             ),
                             /*Text(
                               'Juan',
@@ -113,18 +127,29 @@ class ScoresData extends StatelessWidget{
                                   color: Colors.white
                               ),
                             ),*/
-                            Text(
-                              snapshot.data.documents[index].data['level'].toString(),
-                              style: TextStyle(
-                                  color: Colors.white
+                            Container(
+                              width: MediaQuery.of(context).size.width*0.3,
+                              child: Text(
+                                snapshot.data.documents[index].data['level'].toString(),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontFamily: 'Metal'
+                                ),
                               ),
                             ),
-                            Text(
-                              snapshot.data.documents[index].data['points'].toString(),
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
-                            )
+                           Container(
+                             width: MediaQuery.of(context).size.width*0.25,
+                             child:  Text(
+                               snapshot.data.documents[index].data['points'].toString(),
+                               style: TextStyle(
+                                   color: Colors.white,
+                                   fontSize: 20.0,
+                                   fontFamily: 'Metal'
+                               ),
+                               textAlign: TextAlign.center,
+                             ),
+                           )
                           ],
                         );
                       },

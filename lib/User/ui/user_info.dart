@@ -51,8 +51,8 @@ class UserInfo extends StatelessWidget {
         Text(
             user.email,
             style: TextStyle(
-                fontSize: 15.0,
-                color: Colors.white30,
+                fontSize: 16.0,
+                color: Colors.white,
                 fontFamily: 'Metal'
             )
         ),

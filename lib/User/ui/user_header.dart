@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:spacegame/User/bloc/bloc_user.dart';
@@ -25,9 +26,9 @@ class UserHeader extends StatelessWidget {
           case ConnectionState.none:
             return CircularProgressIndicator();
           case ConnectionState.active:
-            return showProfileData(snapshot);
+            return showProfileData(snapshot, context);
           case ConnectionState.done:
-            return showProfileData(snapshot);
+            return showProfileData(snapshot, context);
         }
       },
     );
@@ -67,7 +68,7 @@ class UserHeader extends StatelessWidget {
     );*/
   }
 
-  Widget showProfileData(AsyncSnapshot snapshot){
+  Widget showProfileData(AsyncSnapshot snapshot, BuildContext context){
     if(!snapshot.hasData || snapshot.hasError){
       print("No logeado");
       return Container(
@@ -112,37 +113,33 @@ class UserHeader extends StatelessWidget {
               ],
             ),
             UserInfo(user),
-            Container(
-              margin: EdgeInsets.only(
-                  top: 10.0
-              ),
-            ),
+
             ButtonsBar(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Text(
-                  'Nombre',
-                  style: TextStyle(
-                      fontFamily: 'Metal',
-                      fontSize: 35.0,
-                      color: Colors.white
+                Container(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  child: Text(
+                    'Nivel',
+                    style: TextStyle(
+                        fontFamily: 'Metal',
+                        fontSize: 35.0,
+                        color: Colors.white
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                Text(
-                  'Nivel',
-                  style: TextStyle(
-                      fontFamily: 'Metal',
-                      fontSize: 35.0,
-                      color: Colors.white
-                  ),
-                ),
-                Text(
-                  'Puntos',
-                  style: TextStyle(
-                      fontFamily: 'Metal',
-                      fontSize: 35.0,
-                      color: Colors.white
+                Container(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  child: Text(
+                    'Puntos',
+                    style: TextStyle(
+                        fontFamily: 'Metal',
+                        fontSize: 35.0,
+                        color: Colors.white
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 )
               ],
