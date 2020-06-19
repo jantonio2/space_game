@@ -29,7 +29,7 @@ class Game extends BaseGame {
   //GlobalKey key;
   String level;
   double i;
-
+  double speed = 120.0;
 
   Game(this.dimenstions,this.level){
     points = 0;
@@ -37,29 +37,29 @@ class Game extends BaseGame {
     print(level);
     switch(level){
       case 'Nivel 1':
-        i=4;
-        _counter=25;
-        //ALIENSPEED = 120.0;
+        i=0.5;
+        _counter=30;
+        speed = 120.0;
         break;
       case 'Nivel 2':
-        i=3;
-        _counter=20;
-        //ALIENSPEED = 150.0;
+        i=1;
+        _counter=25;
+        speed = 150.0;
         break;
       case 'Nivel 3':
         i=2;
-        _counter=15;
-        //ALIENSPEED = 180.0;
+        _counter=20;
+        speed = 180.0;
         break;
       case 'Nivel 4':
-        i=1;
-        _counter=10;
-        //ALIENSPEED = 200.0;
+        i=3;
+        _counter=15;
+        speed = 200.0;
         break;
       case 'Nivel 5':
-        i=0.5;
-        _counter=5;
-        //ALIENSPEED = 250.0;
+        i=4;
+        _counter=10;
+        speed = 250.0;
         break;
     }
     _startTimer();
@@ -110,7 +110,7 @@ class Game extends BaseGame {
       if (creationTimer >= i) {
         creationTimer = 0.0;
         int l = 5+Random().nextInt(15-5);
-        alien = new Alien(dimenstions, 0, l,context);
+        alien = new Alien(dimenstions, 0, l,context,speed);
         AlienList.add(alien);
         add(alien);
       }
