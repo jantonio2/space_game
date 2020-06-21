@@ -14,7 +14,9 @@ class ScoreMain extends StatelessWidget{
   Widget build(BuildContext context) {
     //int l = 5+Random().nextInt(10-5);
     //print(l);
+    String x = MediaQuery.of(context).size.width.toString();
     // TODO: implement build
+    print(x);
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,

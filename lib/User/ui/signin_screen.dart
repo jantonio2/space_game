@@ -52,7 +52,7 @@ class _SignInScreen extends State<SignInScreen>{
               Text(
                 'Bienvenido a SpaceGame',
                 style: TextStyle(
-                  fontSize: 42.0,
+                  fontSize: MediaQuery.of(context).size.width*0.107,
                   fontFamily: 'Metal',
                   color: Colors.white,
                   fontWeight: FontWeight.bold

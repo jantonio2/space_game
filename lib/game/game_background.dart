@@ -150,6 +150,7 @@ class _GameBackground extends State<GameBackground>{
                                 ),
                                 FlatButton(
                                   onPressed: (){
+                                    game.paused = false;
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context)=>SpaceMenu())
                                     );

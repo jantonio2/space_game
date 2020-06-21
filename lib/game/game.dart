@@ -183,7 +183,7 @@ class Game extends BaseGame {
   }
 
   void tapInput(Offset position) {
-    if(position.dy>=500){
+    if(position.dy>=MediaQuery.of(context).size.height*0.625){
       if(!finish ){
         touchPositionDx = position.dx;
         print('X: ${position.dx}');
