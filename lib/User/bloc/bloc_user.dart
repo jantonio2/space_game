@@ -27,15 +27,20 @@ class UserBloc implements Bloc{
   final _cloudFirestoreRepository = CloudFirestoreRepository();
   void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
   Future<void> updateScore(Score score) => _cloudFirestoreRepository.updateScore(score);
+
+  //3. Obtener todos los datos de firebase y ordenarlos por los puntos
   Stream<QuerySnapshot> scoresListStrean = Firestore.instance.collection(CloudFirestoreAPI().SCORES).orderBy("points",descending: true).snapshots();
   Stream<QuerySnapshot> get scoresStream => scoresListStrean;
 
+
+  //4. Filtrando por Usuario
   Stream<QuerySnapshot> myScoresListSream(String uid) =>
       Firestore.instance.collection(CloudFirestoreAPI().SCORES)
           .where("userOwner", isEqualTo: Firestore.instance.document("${CloudFirestoreAPI().USERS}/${uid}"))
           .orderBy("points",descending: true)
           .snapshots();
 
+  //5. Guardando datos en Firebase
   Stream<QuerySnapshot> userPoint(v) => Firestore.instance.collection(CloudFirestoreAPI().USERS).where("uid", isEqualTo: Firestore.instance.document("${v}")).snapshots();
 
   signOut() {

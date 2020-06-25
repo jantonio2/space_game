@@ -90,7 +90,7 @@ class ScoresData extends StatelessWidget{
                   return CircularProgressIndicator();
                 case ConnectionState.active:
                   return Container(
-                    height: MediaQuery.of(context).size.height*0.65,
+                    height: MediaQuery.of(context).size.height*0.5,
                     child: ListView.builder(
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index){
