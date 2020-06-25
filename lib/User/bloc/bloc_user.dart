@@ -43,6 +43,9 @@ class UserBloc implements Bloc{
   //5. Guardando datos en Firebase
   Stream<QuerySnapshot> userPoint(v) => Firestore.instance.collection(CloudFirestoreAPI().USERS).where("uid", isEqualTo: Firestore.instance.document("${v}")).snapshots();
 
+  //6. Obteniendo el usuario por referencia
+  Stream<DocumentSnapshot> onlyUser(v) => Firestore.instance.collection(CloudFirestoreAPI().USERS).document(v).snapshots();
+
   signOut() {
     _auth_repository.signOut();
   }

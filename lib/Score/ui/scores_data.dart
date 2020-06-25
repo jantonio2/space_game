@@ -102,7 +102,8 @@ class ScoresData extends StatelessWidget{
                             Container(
                               width: MediaQuery.of(context).size.width*0.45,
                               child: StreamBuilder(
-                                stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
+                                //stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
+                                stream: userbloc.onlyUser(snapshot.data.documents[index].data['userOwner'].documentID),
                                 builder: (context,AsyncSnapshot<DocumentSnapshot>snapshot2){
                                   if(snapshot.hasData){
                                     print(snapshot2.data);
