@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'card_level.dart';
+import 'ui/card_level.dart';
 //import 'package:spacegame/widgets/card_level.dart';
 
 class GameMain extends StatelessWidget{

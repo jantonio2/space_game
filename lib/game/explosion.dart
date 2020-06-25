@@ -1,6 +1,6 @@
 import 'package:flame/components/animation_component.dart';
-import 'alien.dart';
-import 'game_background.dart';
+import 'model/alien.dart';
+import 'ui/game_background.dart';
 
 class Explosion extends AnimationComponent {
   static const TIME = 0.75;

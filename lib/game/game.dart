@@ -5,14 +5,16 @@ import 'package:flame/components/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:ordered_set/ordered_set.dart';
 import 'package:spacegame/Score/ui/score_after_game.dart';
+import 'package:spacegame/game/bloc/bloc_game.dart';
 //import 'package:flame/time.dart';
 //import 'package:flame/components/timer_component.dart';
 
-import 'hand.dart';
-import 'alien.dart';
-import 'game_background.dart';
+import 'model/hand.dart';
+import 'model/alien.dart';
+import 'ui/game_background.dart';
 
 
 
@@ -28,6 +30,8 @@ class Game extends BaseGame {
   int counte=12;
   Timer time;
 
+  int point = 0;
+
   List<Alien> AlienList = <Alien>[];
   List<Hand> handList = <Hand>[];
   Size dimenstions;
@@ -35,8 +39,10 @@ class Game extends BaseGame {
   String level;
   double i;
   double speed = 120.0;
+  GameBloc gameBloc;
 
   Game(this.dimenstions,this.level){
+    //gameBloc = BlocProvider.of<GameBloc>(context);
     //paused = false;
     points = 0;
     //print("entra al juego");
@@ -86,8 +92,16 @@ class Game extends BaseGame {
       //print('puntos: ${points}');
       super.render(canvas);
 
+      /*StreamBuilder(
+        stream: gameBloc.puntosStream,
+        builder: (context, snap){
+          point = snap.data;
+        },
+      );*/
+
       String text = points.toString();
       String c;
+
       if(counte<10){
         c = '0'+counte.toString();
       }else{
@@ -191,7 +205,7 @@ class Game extends BaseGame {
         print('Y: ${position.dy}');
         handStartStop = true;
         handList.add(hand);
-        hand = new Hand(AlienList, handList);
+        hand = new Hand(AlienList, handList, context);
         add(hand);
       }
     }else{
@@ -217,7 +231,7 @@ class Game extends BaseGame {
       time.cancel();
     }
     time = Timer.periodic(Duration(seconds: 1), (timer) {
-      print('${counte}');
+      print('Tiempo: ${counte}');
       if (counte > 0 || checkTimer== false) {
         counte--;
         checkTimer = true;

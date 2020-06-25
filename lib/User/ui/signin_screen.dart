@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:spacegame/User/bloc/bloc_user.dart';
 import 'package:spacegame/User/model/user.dart';
-import 'package:spacegame/game/gradient_back.dart';
+import 'package:spacegame/game/ui/gradient_back.dart';
 import 'package:spacegame/widgets/button_signin.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 

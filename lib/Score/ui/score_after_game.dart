@@ -4,7 +4,7 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:spacegame/Score/model/score.dart';
 import 'package:spacegame/User/bloc/bloc_user.dart';
 import 'package:spacegame/game/main_game.dart';
-import 'package:spacegame/game/game_background.dart';
+import 'package:spacegame/game/ui/game_background.dart';
 import 'package:spacegame/widgets/button_purple.dart';
 
 

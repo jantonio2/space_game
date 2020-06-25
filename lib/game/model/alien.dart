@@ -5,7 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spacegame/Score/ui/score_after_game.dart';
 
-import 'game_background.dart';
+import '../ui/game_background.dart';
+import 'dart:math';
 
 GameBackground gameBackground;
 
@@ -20,12 +21,20 @@ class Alien extends SpriteComponent {
   String pathImg;
   //GlobalKey<ScaffoldState> context;
   double speed;
+  int aux = 0;
+  int mult = 1;
 
   Alien(this.dimenstions, this.postion, this.ypostion,this.context,this.speed,this.pathImg)
       : super.square(ALIEN_SIZE, pathImg);
 
   @override
   void update(double t) {
+    if(aux%40==0){
+      mult *= -1;
+    }
+    aux++;
+    y += finish ? 0 : mult*sin(ALIENSPEED)*pi;
+
     x += finish ? 0 : (t * speed);
     //x += t * ALIENSPEED;
   }
@@ -40,19 +49,7 @@ class Alien extends SpriteComponent {
     }
     bool destroy = x >= maxX + ALIEN_SIZE / 2;
     return false;
-    /*if (destroy) {
-      finish = true;
-      print('Entra');
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
-      );
-      /*Navigator.push(context,
-        MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
-      );*/
-      print("Game over");
-      return true;
-    }
-    return destroy;*/
+
   }
 
   @override

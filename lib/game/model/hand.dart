@@ -1,10 +1,13 @@
 import 'dart:ui';
 
 import 'package:flame/components/component.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:spacegame/game/bloc/bloc_game.dart';
 
 import 'alien.dart';
-import 'explosion.dart';
-import 'game_background.dart';
+import '../explosion.dart';
+import '../ui/game_background.dart';
 
 
 class Hand extends SpriteComponent {
@@ -12,12 +15,15 @@ class Hand extends SpriteComponent {
   double maxY;
   List<Alien> AlienList = <Alien>[];
   List<Hand> bulletList = <Hand>[];
-  Hand(this.AlienList, this.bulletList)
+  BuildContext context;
+  Hand(this.AlienList, this.bulletList, this.context)
       : super.square(HAND_SIZE, 'mano.png');
   Alien alien;
+  GameBloc gameBloc;
 
   @override
   void update(double t) {
+    //gameBloc = BlocProvider.of<GameBloc>(context);
     y -= finish ? 0 : t * HANDSPEED;
     //y -= t * HANDSPEED;
     if (AlienList.isNotEmpty)
@@ -42,6 +48,7 @@ class Hand extends SpriteComponent {
           if(alien.pathImg == 'alieneye.png'){
             points +=300;
           }
+          //gameBloc.sumaPunto(alien.pathImg);
           alien.explode = true;
           hand.explode = true;
           AlienList.remove(alien);

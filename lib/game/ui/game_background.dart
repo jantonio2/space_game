@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:spacegame/space_menu.dart';
 
 
-import 'hand.dart';
-import 'alien.dart';
-import 'game.dart';
-import 'main_game.dart';
+import '../model/hand.dart';
+import '../model/alien.dart';
+import '../game.dart';
+import '../main_game.dart';
 
 bool finish = false;
 const ALIENSPEED = 120.0;
@@ -148,22 +148,7 @@ class _GameBackground extends State<GameBackground>{
                                     ),
                                   ),
                                 ),
-                                FlatButton(
-                                  onPressed: (){
-                                    game.paused = false;
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context)=>SpaceMenu())
-                                    );
-                                    //Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                      'Volver',
-                                    style: TextStyle(
-                                        fontFamily: 'Metal',
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                )
+
                               ],
                             ),
                           )
@@ -216,7 +201,22 @@ GameBackground() async {
   Flame.util.addGestureRecognizer(new TapGestureRecognizer()
     ..onTapUp = (TapUpDetails evt) => game.onUp(evt.globalPosition));
 }
-
+FlatButton(
+                                  onPressed: (){
+                                    game.counte=0;
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context)=>SpaceMenu())
+                                    );
+                                    //Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                      'Volver',
+                                    style: TextStyle(
+                                        fontFamily: 'Metal',
+                                        color: Colors.white
+                                    ),
+                                  ),
+                                )
 */
 class GameWrapper extends StatelessWidget {
   final Game game;
