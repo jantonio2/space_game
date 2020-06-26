@@ -101,25 +101,13 @@ class ScoresData extends StatelessWidget{
                           children: <Widget>[
                             Container(
                               width: MediaQuery.of(context).size.width*0.45,
-                              child: StreamBuilder(
-                                //stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
-                                stream: userbloc.onlyUser(snapshot.data.documents[index].data['userOwner'].documentID),
-                                builder: (context,AsyncSnapshot<DocumentSnapshot>snapshot2){
-                                  if(snapshot.hasData){
-                                    print(snapshot2.data);
-                                    return Text(
-                                      snapshot2.data.data["name"],
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20.0,
-                                          fontFamily: 'Metal'
-                                      ),
-                                    );
-                                  }
-                                  else{
-                                    return Text("Cargando");
-                                  }
-                                },
+                              child: Text(
+                                snapshot.data.documents[index].data['user'].toString(),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontFamily: 'Metal'
+                                ),
                               ),
                             ),
                             /*Text(

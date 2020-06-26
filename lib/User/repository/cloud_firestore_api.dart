@@ -30,6 +30,7 @@ class CloudFirestoreAPI {
         {
           'level' : score.level,
           'points' : score.points,
+          'user' : user.displayName,
           'userOwner' : _db.document("${USERS}/${user.uid}")  //reference
         }
       ).then((DocumentReference dr){
