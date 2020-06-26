@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spacegame/User/model/user.dart';
 
+//Clase que obtiene los datos del usuario
 class UserInfo extends StatelessWidget {
 
   User user;

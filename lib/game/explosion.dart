@@ -2,6 +2,8 @@ import 'package:flame/components/animation_component.dart';
 import 'model/alien.dart';
 import 'ui/game_background.dart';
 
+
+//Si se registra una colisión entre el alien y la mano se llama a esta clase la cual reproduce una animación
 class Explosion extends AnimationComponent {
   static const TIME = 0.75;
 

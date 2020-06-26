@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Fondo de la pantalla User
 class UserBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

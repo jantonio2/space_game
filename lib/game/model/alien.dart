@@ -16,17 +16,18 @@ class Alien extends SpriteComponent {
   int postion;
   int ypostion;
   bool explode = false;
-  //double maxY;
   double maxX;
   String pathImg;
-  //GlobalKey<ScaffoldState> context;
   double speed;
   int aux = 0;
   int mult = 1;
 
+
+  //El codigo de abajo es el constructor del alien
   Alien(this.dimenstions, this.postion, this.ypostion,this.context,this.speed,this.pathImg)
       : super.square(ALIEN_SIZE, pathImg);
 
+  //La función de abajo actualiza la posición del alien alrededor del lienzo
   @override
   void update(double t) {
     if(aux%40==0){
@@ -39,6 +40,7 @@ class Alien extends SpriteComponent {
     //x += t * ALIENSPEED;
   }
 
+  //La función de abajo destruye al alien si se retorna true
   @override
   bool destroy() {
     if (explode) {
@@ -52,6 +54,7 @@ class Alien extends SpriteComponent {
 
   }
 
+  //La función de abajo dibuja al alien en su posición inicial
   @override
   void resize(Size size) {
     this.x = 0;

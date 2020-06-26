@@ -14,12 +14,14 @@ class SpaceMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      //Construyo un NavigationBar al estilo IOs
       bottomNavigationBar: CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
             activeColor: Colors.indigo,
             backgroundColor: Color(0x33FFFFFF),
             inactiveColor: Colors.white30,
             items: [
+              //Añado items a mi NavigationBar
               BottomNavigationBarItem(
                   icon: Icon(Icons.gamepad),
                   title: Text("")
@@ -40,8 +42,10 @@ class SpaceMenu extends StatelessWidget {
             case 0:
               return CupertinoTabView(
                 builder: (BuildContext context){
+                  //Indico que usare un bloc generico
                   return BlocProvider(
                       child: GameMain(),
+                      //Indico que bloc usare
                       bloc: GameBloc()
                   );
                 },
@@ -50,7 +54,9 @@ class SpaceMenu extends StatelessWidget {
             case 1:
               return CupertinoTabView(
                 builder: (BuildContext context){
+                  //Indico que usare un bloc generico
                   return BlocProvider<UserBloc>(
+                    //Indico que bloc usare
                     bloc: UserBloc(),
                     child: ScoreMain(),
                   );
@@ -60,7 +66,9 @@ class SpaceMenu extends StatelessWidget {
             case 2:
               return CupertinoTabView(
                 builder: (BuildContext context) {
+                  //Indico que usare un bloc generico
                   return BlocProvider<UserBloc>(
+                    //Indico que bloc usare
                     bloc: UserBloc(),
                     child: UserMain(),
                   );

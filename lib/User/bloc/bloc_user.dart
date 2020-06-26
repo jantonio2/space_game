@@ -46,6 +46,7 @@ class UserBloc implements Bloc{
   //6. Obteniendo el usuario por referencia
   Stream<DocumentSnapshot> onlyUser(v) => Firestore.instance.collection(CloudFirestoreAPI().USERS).document(v).snapshots();
 
+  //7. Cerrando sesión
   signOut() {
     _auth_repository.signOut();
   }

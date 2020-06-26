@@ -11,6 +11,7 @@ class CloudFirestoreAPI {
   final Firestore _db = Firestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  //Funcion para actualizar datos en el usuario
   void updateUserData(User user) async{
     DocumentReference ref = _db.collection(USERS).document(user.uid);
     return await ref.setData({
@@ -22,6 +23,7 @@ class CloudFirestoreAPI {
     }, merge: true);
   }
 
+  //Función para actualizar datos  en los puntajes
   Future<void> updateScore(Score score) async{
     CollectionReference refScores = _db.collection(SCORES);
 

@@ -16,22 +16,25 @@ class Hand extends SpriteComponent {
   List<Alien> AlienList = <Alien>[];
   List<Hand> bulletList = <Hand>[];
   BuildContext context;
+  //Constructor de la clase
   Hand(this.AlienList, this.bulletList, this.context)
       : super.square(HAND_SIZE, 'mano.png');
   Alien alien;
   GameBloc gameBloc;
 
+  //Actualizo la posicion de la mano en el lienzo
   @override
   void update(double t) {
-    //gameBloc = BlocProvider.of<GameBloc>(context);
+    //El movimiento continua hasta que el juego finalice
     y -= finish ? 0 : t * HANDSPEED;
-    //y -= t * HANDSPEED;
+    //Recibo la lista de los aliens
     if (AlienList.isNotEmpty)
       AlienList.forEach((alien) {
+        //Reviso si la mano colisiono con el alien
         bool remove = this.toRect().contains(alien.toRect().bottomCenter) ||
             this.toRect().contains(alien.toRect().bottomLeft) ||
             this.toRect().contains(alien.toRect().bottomRight);
-        //||this.toRect().contains(Offset(alien.x,alien.y))
+        //Si colisiono retorno un true y remuevo a los dos, añado el valor del alien a los puntos
         if (remove) {
           if(alien.pathImg == 'extraterrestre4.png'){
             points += 100;
@@ -48,15 +51,16 @@ class Hand extends SpriteComponent {
           if(alien.pathImg == 'alieneye.png'){
             points +=300;
           }
-          //gameBloc.sumaPunto(alien.pathImg);
           alien.explode = true;
           hand.explode = true;
           AlienList.remove(alien);
+          //Añado la animación de la explosion
           game.add(new Explosion(alien));
         }
       });
   }
 
+  //La función de abajo destruye a la mano si se retorna true
   @override
   bool destroy() {
     if (explode) {
@@ -70,6 +74,7 @@ class Hand extends SpriteComponent {
     return destroy;
   }
 
+  //La funcion de abajo dibuja a la mano en el lugar donde se haya tocado
   @override
   void resize(Size size) {
     this.x = touchPositionDx;

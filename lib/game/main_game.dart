@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/card_level.dart';
-//import 'package:spacegame/widgets/card_level.dart';
 
 class GameMain extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
+    //Alistando las listas con las imagenes para cada nivel
     List<String> img = ['assets/img/extraterrestre4.png','assets/img/alienverde2.png','assets/img/alienver3.png','assets/img/alienverde2.png'];
     List<String> img2 = ['assets/img/alienrojo.png','assets/img/alienrojo1.png','assets/img/alienrojo2.png','assets/img/alienrojo1.png'];
     List<String> img3 = ['assets/img/alienpurple.png','assets/img/alienpurple1.png','assets/img/alienpurple2.png','assets/img/alienpurple1.png'];
@@ -32,7 +32,7 @@ class GameMain extends StatelessWidget{
                 margin: EdgeInsets.only(
                     top: 120.0
                 ),
-                //height: 300,
+                //La lista de abajo contiene las tarjetas de cada nivel
                 child: ListView(
                   padding: EdgeInsets.all(25.0),
                   scrollDirection: Axis.vertical,

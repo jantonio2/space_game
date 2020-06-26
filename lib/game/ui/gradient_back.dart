@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Es una clase que solo devuelve un contenedor con un gradiente
 class GradientBack extends StatelessWidget{
 
   double height = 0.0;

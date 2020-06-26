@@ -8,6 +8,8 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 import '../../space_menu.dart';
 
+
+//Pantalla Signin
 class SignInScreen extends StatefulWidget{
 
   @override
@@ -23,15 +25,20 @@ class _SignInScreen extends State<SignInScreen>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    //Inicializando el bloc
     userBloc = BlocProvider.of(context);
     return _handleCurrentSession();
   }
 
   Widget _handleCurrentSession(){
+    //Obteniendo datos del bloc
     return StreamBuilder(
+      //Indicando el stream del builder que usaremos
       stream: userBloc.authStatus,
       builder: (BuildContext context, AsyncSnapshot snapshot){
+        //Comprobando si el snapshot contiene datos
         if(!snapshot.hasData || snapshot.hasError){
+          //Iniciando sesión
           return signInGoogleUI();
         }else{
           return SpaceMenu();

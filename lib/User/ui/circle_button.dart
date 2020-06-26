@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Widget botón circular reutilizable
 class CircleButton extends StatefulWidget {
   final VoidCallback onPressed;
   bool mini;

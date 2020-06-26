@@ -10,6 +10,7 @@ class ScoresData extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    //Inicializo el bloc
     userbloc = BlocProvider.of<UserBloc>(context);
     return Container(
       margin: EdgeInsets.only(
@@ -33,7 +34,6 @@ class ScoresData extends StatelessWidget{
             ),
           ),
           Row(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width*0.45,
@@ -80,9 +80,12 @@ class ScoresData extends StatelessWidget{
               )
             ],
           ),
+          //El widget que me permitira traer datos de mi bloc
           StreamBuilder(
+            //como stream le digo que llame de la clsase userbloc al stream scorestrema
             stream: userbloc.scoresStream,
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+              //En el switch veo cualquiera de los 4 datos de mi snapshot
               switch(snapshot.connectionState){
                 case ConnectionState.waiting:
                   return CircularProgressIndicator();
@@ -91,17 +94,17 @@ class ScoresData extends StatelessWidget{
                 case ConnectionState.active:
                   return Container(
                     height: MediaQuery.of(context).size.height*0.5,
+                    //Construyo un Listview.builder para hacer la table de rankig
                     child: ListView.builder(
+                      //La cantidad de items sera la cantidad de documentos
                       itemCount: snapshot.data.documents.length,
                       itemBuilder: (context, index){
-                        //tring nom = ref(snapshot.data.documents[index].data['userOwner']);
-                        //print(nom);
                         return Row(
-                          //mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Container(
                               width: MediaQuery.of(context).size.width*0.45,
                               child: Text(
+                                //Obtengo un dato del snapshot
                                 snapshot.data.documents[index].data['user'].toString(),
                                 style: TextStyle(
                                     color: Colors.white,
@@ -119,6 +122,7 @@ class ScoresData extends StatelessWidget{
                             Container(
                               width: MediaQuery.of(context).size.width*0.3,
                               child: Text(
+                                //Obtengo un dato del snapshot
                                 snapshot.data.documents[index].data['level'].toString(),
                                 style: TextStyle(
                                     color: Colors.white,
@@ -130,6 +134,7 @@ class ScoresData extends StatelessWidget{
                            Container(
                              width: MediaQuery.of(context).size.width*0.25,
                              child:  Text(
+                               //Obtengo un dato del snapshot
                                snapshot.data.documents[index].data['points'].toString(),
                                style: TextStyle(
                                    color: Colors.white,
@@ -162,63 +167,3 @@ class ScoresData extends StatelessWidget{
   }
 
 }
-
-/*return Container(
-                    height: MediaQuery.of(context).size.height*0.7,
-                    child: ListView.builder(
-                      itemCount: snapshot.data.documents.length,
-                      itemBuilder: (context, index){
-                        return Text(snapshot.data.documents[index].data['points']);
-                      },
-                    ),
-                  );*/
-/*return Container(
-                    height: MediaQuery.of(context).size.height*0.7,
-                    child: ListView.builder(
-                      itemCount: snapshot.data.documents.length,
-                      itemBuilder: (context, index){
-                        //tring nom = ref(snapshot.data.documents[index].data['userOwner']);
-                        //print(nom);
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            StreamBuilder(
-                              stream: Firestore.instance.collection('users').document(snapshot.data.documents[index].data['userOwner'].documentID).snapshots(),
-                              builder: (context,AsyncSnapshot<DocumentSnapshot>snapshot2){
-                                if(snapshot.hasData){
-                                  print(snapshot2.data);
-                                  return Text(
-                                    snapshot2.data.data["name"],
-                                    style: TextStyle(
-                                        color: Colors.white
-                                    ),
-                                  );
-                                }
-                                else{
-                                  return Text("Cargando");
-                                }
-                              },
-                            ),
-                            /*Text(
-                              'Juan',
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
-                            ),*/
-                            Text(
-                              snapshot.data.documents[index].data['level'].toString(),
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
-                            ),
-                            Text(
-                              snapshot.data.documents[index].data['points'].toString(),
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
-                            )
-                          ],
-                        );
-                      },
-                    ),
-                  );*/

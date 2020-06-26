@@ -15,12 +15,14 @@ class UserHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    //Inicializando el bloc
     userBloc = BlocProvider.of<UserBloc>(context);
-
+    //Obteniendo los datos del bloc
     return StreamBuilder(
+      //Indicando el stream del bloc que se usara
       stream: userBloc.streamFirebase,
       builder: (BuildContext context, AsyncSnapshot snapshot){
+        //Verificando el estado del snapshot
         switch(snapshot.connectionState){
           case ConnectionState.waiting:
             return CircularProgressIndicator();
@@ -33,40 +35,6 @@ class UserHeader extends StatelessWidget {
         }
       },
     );
-
-    /*final title = Text(
-      'Perfil',
-      style: TextStyle(
-          fontFamily: 'Metal',
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 50.0
-      ),
-    );
-
-    return Container(
-      margin: EdgeInsets.only(
-          left: 20.0,
-          right: 20.0,
-          top: 70.0
-      ),
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              title
-            ],
-          ),
-          UserInfo('assets/images/extraterrestre1.png', 'Anahí Salgado','anahi@platzi.com'),
-          Container(
-            margin: EdgeInsets.only(
-              top: 15.0
-            ),
-          ),
-          ButtonsBar()
-        ],
-      ),
-    );*/
   }
 
   Widget showProfileData(AsyncSnapshot snapshot, BuildContext context){
@@ -152,6 +120,7 @@ class UserHeader extends StatelessWidget {
                 )
               ],
             ),
+            //Construyendo el historial de puntajes filtrado
             StreamBuilder(
               stream: userBloc.myScoresListSream(id),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
@@ -166,17 +135,8 @@ class UserHeader extends StatelessWidget {
                       child: ListView.builder(
                         itemCount: snapshot.data.documents.length,
                         itemBuilder: (context, index){
-                          //tring nom = ref(snapshot.data.documents[index].data['userOwner']);
-                          //print(nom);
                           return Row(
-                            //mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              /*Text(
-                              'Juan',
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
-                            ),*/
                               Container(
                                 width: MediaQuery.of(context).size.width*0.4,
                                 child: Text(

@@ -19,13 +19,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //Indio que usare un bloc genérico
     return BlocProvider(
       child: MaterialApp(
         title: 'Flutter Demo',
-        //home: SpaceMenu()
+        //Mi screen inicial es el signin
         home: SignInScreen(),
         navigatorKey: key,
       ),
+      //Indico el bloc que usare
       bloc: UserBloc(),
     );
   }

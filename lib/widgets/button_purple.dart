@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-
+//Boton reutilizable
 class ButtonPurple extends StatelessWidget {
 
   final String buttonText;

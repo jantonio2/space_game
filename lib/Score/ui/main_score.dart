@@ -6,14 +6,11 @@ import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:spacegame/Score/ui/scores_data.dart';
 import 'package:spacegame/User/bloc/bloc_user.dart';
 
+//Clase que muestra la pantalla del scoremain
 class ScoreMain extends StatelessWidget{
-
-
 
   @override
   Widget build(BuildContext context) {
-    //int l = 5+Random().nextInt(10-5);
-    //print(l);
     String x = MediaQuery.of(context).size.width.toString();
     // TODO: implement build
     print(x);
@@ -22,6 +19,7 @@ class ScoreMain extends StatelessWidget{
       width: MediaQuery.of(context).size.width,
       child: Stack(
        children: <Widget>[
+         //Widget que permite utilizar archivos flr como fondo animado
          FlareActor(
            'assets/space.flr',
            animation: "idle",
@@ -32,7 +30,5 @@ class ScoreMain extends StatelessWidget{
       )
     );
   }
-
 }
 
-/**/

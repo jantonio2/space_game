@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'game_background.dart';
 
+//La clase recibe una lista de imagenes y el numero del nivel
 class CardLevel extends StatefulWidget{
 
   List<String> img;
@@ -24,10 +25,10 @@ class _CardLevel extends State<CardLevel>{
   _CardLevel(this.img, this.level);
 
 
-//GlobalKey<ScaffoldState> _sacaffolkey=GlobalKey();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    //El contenedor de abajo construye la tarjeta de cada nivel, es reutilizable
     return Container(
 
       height: 150,
@@ -73,6 +74,7 @@ class _CardLevel extends State<CardLevel>{
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
+                    //Asigno la imagen que el hilo me retorne
                     image: AssetImage(img[index]),
                   )
               ),
@@ -94,7 +96,7 @@ class _CardLevel extends State<CardLevel>{
             ),
             InkWell(
               onTap: (){
-                //var a = await GameBackground();
+                //Cambio de pantalla al screen donde iniciara el juego
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => GameBackground(level)),ModalRoute.withName("/")
@@ -139,6 +141,7 @@ class _CardLevel extends State<CardLevel>{
     );
   }
 
+  //Creo el hilo para poder manipular los sprites
   moverImagen() async{
     await Future.delayed(Duration(milliseconds: 150));
     setState(() {
@@ -151,6 +154,7 @@ class _CardLevel extends State<CardLevel>{
     moverImagen();
   }
 
+  //Llamo al hilo en el initState
   @override
   void initState() {
     moverImagen();

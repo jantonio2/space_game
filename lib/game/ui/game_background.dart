@@ -25,8 +25,6 @@ var points = 0;
 Alien alien;
 Hand hand;
 
-int _counter = 10;
-Timer _timer;
 
 
 
@@ -35,6 +33,7 @@ bool handStartStop = false;
 double touchPositionDx = 0.0;
 double touchPositionDy = 0.0;
 
+//La clase principal que contendra el juego
 class GameBackground extends StatefulWidget{
 
   String level;
@@ -55,7 +54,7 @@ class _GameBackground extends State<GameBackground>{
   String level;
   _GameBackground(this.level);
 
-
+  //De forma asincrona la siguiente funcion carga los recursos y el juego
   cargar() async {
     Flame.audio.disableLog();
     await Flame.images.loadAll(['extraterrestre1.png', 'extraterrestre2.png']);
@@ -78,11 +77,11 @@ class _GameBackground extends State<GameBackground>{
     });
     game.context=context;
   }
-
+  //En el initState llamo a la funcion asincrona
   void initState(){
     cargar();
   }
-
+  //Si el juego finaliza esta ventana se cierra
   @override
   void dispose() {
     if(!finish){
@@ -92,20 +91,20 @@ class _GameBackground extends State<GameBackground>{
 
   @override
   Widget build(BuildContext context) {
-    //construir();
-    //print('dimensiones');
-    //print(dimensions);
     // TODO: implement build
 
     return Container(
       child: Stack(
           children: <Widget>[
+            //El Widget de abajo me permite poner un archivo .flr el cual es animado
             FlareActor(
               'assets/space.flr',
               animation: "idle",
               fit: BoxFit.cover,
             ),
+            //Si se cargaron los recursos el juego inicia
             cargado?game.widget:Container(),
+            //Añado un botón de pausa
             Container(
               margin: EdgeInsets.only(
                 top: 20.0,
@@ -117,7 +116,6 @@ class _GameBackground extends State<GameBackground>{
                 onPressed: (){
                   game.paused = true;
                   game.startTime();
-                  //game.time.cancel();
                   showDialog(
                       context: context,
                       barrierDismissible: false,
@@ -170,54 +168,7 @@ class _GameBackground extends State<GameBackground>{
 
 }
 
-
-/*
-GameBackground() async {
-  Flame.audio.disableLog();
-  Flame.images.loadAll(['fire.png', 'dragon.png', 'gun.png', 'bullet.png', 'extraterrestre1.png', 'extraterrestre2.png']);
-  var dimensions = await Flame.util.initialDimensions();
-  game = new Game(dimensions);
-  //game.key=key;
-  runApp(MaterialApp(
-      home: Scaffold(
-          body: Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                image: new AssetImage("assets/images/Fondo1.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: GameWrapper(game),
-          ))));
-  HorizontalDragGestureRecognizer horizontalDragGestureRecognizer =
-  new HorizontalDragGestureRecognizer();
-
-  Flame.util.addGestureRecognizer(horizontalDragGestureRecognizer
-    ..onUpdate = (startDetails) => game.dragInput(startDetails.globalPosition));
-
-  Flame.util.addGestureRecognizer(new TapGestureRecognizer()
-    ..onTapDown = (TapDownDetails evt) => game.tapInput(evt.globalPosition));
-
-  Flame.util.addGestureRecognizer(new TapGestureRecognizer()
-    ..onTapUp = (TapUpDetails evt) => game.onUp(evt.globalPosition));
-}
-FlatButton(
-                                  onPressed: (){
-                                    game.counte=0;
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context)=>SpaceMenu())
-                                    );
-                                    //Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                      'Volver',
-                                    style: TextStyle(
-                                        fontFamily: 'Metal',
-                                        color: Colors.white
-                                    ),
-                                  ),
-                                )
-*/
+//Funcion que llama a mi juego
 class GameWrapper extends StatelessWidget {
   final Game game;
   GameWrapper(this.game);

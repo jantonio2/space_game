@@ -6,12 +6,12 @@ class GameBloc implements Bloc{
 
   int puntos = 0;
 
-  //StreamController<GameBloc> _input = StreamController();
   StreamController<int> _output = StreamController();
 
-
+  //Funcion que devuelve los puntos
   Stream<int> get puntosStream => _output.stream;
 
+  //Funcion para añadir los puntos segun el alien
   void sumaPunto(String nom){
     if(nom == 'extraterrestre4.png'){
       puntos += 100;

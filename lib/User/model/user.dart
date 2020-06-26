@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spacegame/Score/model/score.dart';
 
+//Clase modelo del usuario
 class User{
   final String uid;
   final String name;

@@ -18,7 +18,7 @@ import 'ui/game_background.dart';
 
 
 
-
+//La clase principal de todo el juego
 class Game extends BaseGame {
 
   bool paused = false;
@@ -42,11 +42,9 @@ class Game extends BaseGame {
   GameBloc gameBloc;
 
   Game(this.dimenstions,this.level){
-    //gameBloc = BlocProvider.of<GameBloc>(context);
-    //paused = false;
+    //Inicializo los puntos
     points = 0;
-    //print("entra al juego");
-    //print(level);
+    //Segun el nivel que es aplico la velocidad y el tiempo
     switch(level){
       case 'Nivel 1':
         i=0.5;
@@ -74,30 +72,17 @@ class Game extends BaseGame {
         speed = 250.0;
         break;
     }
+    //Ininicio el temporizador
     startTime();
-    /*add(
-        TimerComponent(
-            Timer(1, repeat: true, callback: () {
-              print("10 seconds elapsed");
-            })
-              ..start()
-        )
-    );*/
   }
 
+  //La funcion de abajo dibuja los elemento en el lienzo
   @override
   void render(Canvas canvas) {
-    //fin(finish);
+    //Dibuja hasta que el juego finaliza
     if(!finish){
-      //print('puntos: ${points}');
-      super.render(canvas);
 
-      /*StreamBuilder(
-        stream: gameBloc.puntosStream,
-        builder: (context, snap){
-          point = snap.data;
-        },
-      );*/
+      super.render(canvas);
 
       String text = points.toString();
       String c;
@@ -122,15 +107,24 @@ class Game extends BaseGame {
     }
   }
 
+  //Añade cada cierto tiempo un objeto al lienzo
   double creationTimer = 0.0;
   @override
   void update(double t) {
+    //Si el juego esta pausado deja de añádir y detiene los movimientos
     if(!paused){
       creationTimer += t*2;
+      //Si el juego finaliza deja de añadir
       if(!finish){
         if (creationTimer >= i) {
           creationTimer = 0.0;
+          //Obteniendo un numero randomico de posicion inicial
           int l = 5+Random().nextInt(15-5);
+          //Añadiendo para el nivel 1
+          if(level == 'Nivel 1'){
+            alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
+          }
+          //Añadiendo para el nivel 2
           if(level == 'Nivel 2'){
             if(l == 9 || l == 13){
               alien = new Alien(dimenstions, 0, l,context,speed,'alienrojo.png');
@@ -138,6 +132,7 @@ class Game extends BaseGame {
               alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
             }
           }
+          //Añadiendo para el nivel 3
           if(level == 'Nivel 3'){
             if(l == 11 || l == 7){
               alien = new Alien(dimenstions, 0, l,context,speed,'alienpurple.png');
@@ -149,6 +144,7 @@ class Game extends BaseGame {
               }
             }
           }
+          //Añadiendo para el nivel 4
           if(level == 'Nivel 4'){
             if(l == 5 || l == 10){
               alien = new Alien(dimenstions, 0, l,context,speed,'aliensky.png');
@@ -164,6 +160,7 @@ class Game extends BaseGame {
               }
             }
           }
+          //Añadiendo para el nivel 5
           if(level == 'Nivel 5'){
             if(l == 8){
               alien = new Alien(dimenstions, 0, l,context,speed,'alieneye.png');
@@ -183,9 +180,7 @@ class Game extends BaseGame {
               }
             }
           }
-          if(level == 'Nivel 1'){
-            alien = new Alien(dimenstions, 0, l,context,speed,'extraterrestre4.png');
-          }
+          //Añadiendo al lienzo
           AlienList.add(alien);
           add(alien);
         }
@@ -196,13 +191,14 @@ class Game extends BaseGame {
     }
   }
 
+  //La funcion de abajo reconoce el lugar donde se pulso
   void tapInput(Offset position) {
+    //La condicion limita la pantalla para añadir la mano
     if(position.dy>=MediaQuery.of(context).size.height*0.625){
+      //Si el juego finaliza no detecta el encvia el touch
       if(!finish ){
         touchPositionDx = position.dx;
-        print('X: ${position.dx}');
         touchPositionDy = position.dy;
-        print('Y: ${position.dy}');
         handStartStop = true;
         handList.add(hand);
         hand = new Hand(AlienList, handList, context);
@@ -225,11 +221,12 @@ class Game extends BaseGame {
     handStartStop = false;
   }
 
+  //Funcion del temporizaor
   void startTime() {
-    //_counter = 12;
     if (time != null) {
       time.cancel();
     }
+    //Los cambios suceden cada segundo
     time = Timer.periodic(Duration(seconds: 1), (timer) {
       print('Tiempo: ${counte}');
       if (counte > 0 || checkTimer== false) {
@@ -238,7 +235,7 @@ class Game extends BaseGame {
       } else {
         time.cancel();
         finish = true;
-        print('Entra ${finish}');
+        //Si el tiempo acaba se envia a la ventana despues del juego
         Navigator.push(context,
             MaterialPageRoute(builder: (context)=>ScoreAfterGame(points,level))
         );
@@ -246,21 +243,10 @@ class Game extends BaseGame {
     });
   }
 
+  //Funcion que detiene el temporizador
   void stopTime(){
     checkTimer = false;
   }
 
-  /*void fin(bool f){
-    if(f){
-    /*else{
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
-      );
-    }*/
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context)=>ScoreAfterGame(points))
-      );
-    }
-  }*/
 }
 
